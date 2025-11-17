@@ -8,7 +8,7 @@ import {
   useWriteContract,
   useWaitForTransactionReceipt,
 } from 'wagmi';
-import { parseEther, formatEther } from 'viem';
+import { parseEther, formatEther, formatUnits } from 'viem';
 import { ERC20_ABI, TOKEN_CONTRACT_ADDRESS } from '../shared/constants';
 
 export function Dashboard() {
@@ -37,6 +37,23 @@ export function Dashboard() {
     abi: ERC20_ABI,
     functionName: 'symbol',
   });
+
+  const { data: decimals } = useReadContract({
+    address: TOKEN_CONTRACT_ADDRESS,
+    abi: ERC20_ABI,
+    functionName: 'decimals',
+  });
+
+  const { data: totalSupply } = useReadContract({
+    address: TOKEN_CONTRACT_ADDRESS,
+    abi: ERC20_ABI,
+    functionName: 'totalSupply',
+  });
+
+  const totalSupplyFormatted =
+    totalSupply && typeof totalSupply === 'bigint' && typeof decimals === 'number'
+      ? formatUnits(totalSupply, decimals)
+      : null;
 
   // AMULET balance
   const {
@@ -74,7 +91,6 @@ export function Dashboard() {
     }
   }, [isConfirmed, refetchAmuletBalance]);
 
-
   const handleTransfer = () => {
     if (!recipient || !amount) return;
 
@@ -108,9 +124,7 @@ export function Dashboard() {
     address ? `${address.slice(0, 6)}...${address.slice(-4)}` : '';
 
   const seiBalanceFormatted =
-    seiBalance && seiBalance.value
-      ? formatEther(seiBalance.value)
-      : null;
+    seiBalance && seiBalance.value ? formatEther(seiBalance.value) : null;
 
   const amuletBalanceFormatted =
     amuletBalance && typeof amuletBalance === 'bigint'
@@ -119,7 +133,7 @@ export function Dashboard() {
 
   return (
     <div className="dashboard">
-      {/* Top row: wallet overview */}
+      {/* Top row: wallet overview + balances + token info */}
       <section className="dashboard-grid">
         <div className="dashboard-card">
           <h3>Wallet</h3>
@@ -146,6 +160,41 @@ export function Dashboard() {
               : '…'}
           </p>
           <p className="muted">{name as string}</p>
+        </div>
+
+        <div className="dashboard-card">
+          <h3>Token Info</h3>
+
+          <p className="label">Name</p>
+          <p>{(name as string) ?? 'Loading…'}</p>
+
+          <p className="label">Symbol</p>
+          <p>{(symbol as string) ?? '...'}</p>
+
+          <p className="label">Total Supply</p>
+          <p>
+            {totalSupplyFormatted
+              ? `${totalSupplyFormatted} ${symbol as string}`
+              : '…'}
+          </p>
+
+          <p className="label">Decimals</p>
+          <p>{typeof decimals === 'number' ? decimals : '…'}</p>
+
+          <p className="label">Contract</p>
+          <p className="mono small">
+            {TOKEN_CONTRACT_ADDRESS.slice(0, 10)}...
+            {TOKEN_CONTRACT_ADDRESS.slice(-6)}
+          </p>
+
+          <a
+            className="link"
+            href={`https://testnet.seiscan.io/address/${TOKEN_CONTRACT_ADDRESS}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            View on Seiscan
+          </a>
         </div>
       </section>
 
@@ -185,55 +234,52 @@ export function Dashboard() {
           </button>
 
           {error && (
-            <p className="error">
-              Error: {(error as Error).message}
-            </p>
+            <p className="error">Error: {(error as Error).message}</p>
           )}
         </div>
 
-      {/* Recent Activity card */}
-<div className="dashboard-card dashboard-card-tall">
-  <h3>Recent Activity</h3>
+        {/* Recent Activity card */}
+        <div className="dashboard-card dashboard-card-tall">
+          <h3>Recent Activity</h3>
 
-  {!txHash && (
-    <p className="muted">
-      No transactions sent yet. Your next AMULET transfer will appear
-      here.
-    </p>
-  )}
+          {!txHash && (
+            <p className="muted">
+              No transactions sent yet. Your next AMULET transfer will appear
+              here.
+            </p>
+          )}
 
-  {txHash && (
-    <>
-      <p className="label">Last transaction</p>
-      <p className="mono small">
-        {txHash.slice(0, 12)}...{txHash.slice(-8)}
-      </p>
+          {txHash && (
+            <>
+              <p className="label">Last transaction</p>
+              <p className="mono small">
+                {txHash.slice(0, 12)}...{txHash.slice(-8)}
+              </p>
 
-      <p className="label">Status</p>
-      <p>
-        {isSending
-          ? 'Sending…'
-          : isConfirming
-          ? 'Confirming…'
-          : isConfirmed
-          ? 'Confirmed ✅'
-          : isTxError
-          ? 'Failed ❌'
-          : 'Confirmed ✅'}
-      </p>
+              <p className="label">Status</p>
+              <p>
+                {isSending
+                  ? 'Sending…'
+                  : isConfirming
+                  ? 'Confirming…'
+                  : isConfirmed
+                  ? 'Confirmed ✅'
+                  : isTxError
+                  ? 'Failed ❌'
+                  : 'Confirmed ✅'}
+              </p>
 
-      <a
-        className="link"
-        href={`https://testnet.seiscan.io/tx/${txHash}`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        View on Seiscan
-      </a>
-    </>
-  )}
-</div>
-
+              <a
+                className="link"
+                href={`https://testnet.seiscan.io/tx/${txHash}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                View on Seiscan
+              </a>
+            </>
+          )}
+        </div>
       </section>
     </div>
   );
