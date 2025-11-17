@@ -1,0 +1,227 @@
+.summaryCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background-color: var(--brand-grey-lighter-2);
+  border-radius: 14px;
+
+      /* Layout */
+  position: relative;
+
+
+
+  /* Soft “glass” fill (fill-opacity="0.2") */
+background: radial-gradient(circle at top left,
+  rgba(255, 255, 255, 0.04) 0%,
+  rgba(255, 255, 255, 0.02) 40%,
+  rgba(255, 255, 255, 0) 100%);
+
+  /* Optional: frosted effect if there's content behind */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  /* Drop shadow similar to the filter */
+  box-shadow:
+    0 2px 2px rgba(165, 166, 166, 0.4);
+
+  /* Smooth hover if you want */
+  transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+/* Line item */
+.itemRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+}
+
+.itemThumbWrap {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  border: 1px solid var(--brand-grey-dark);
+  background: var(--brand-white);
+  display: grid;
+  place-items: center;
+}
+
+.itemThumb {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.qtyBadge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+
+  border-radius: 999px;
+  background:var(--mapped-surface-action-1);
+  color: #fff;
+  font-family: var(--body-sm-bold-font-family);
+  font-size: 12px;
+  line-height: 1;
+  border: 2px solid #fff;
+}
+
+.itemTitle {
+  font-family: var(--body-lg-font-family);
+  font-weight: var(--body-lg-font-weight);
+  color: var(--brand-black);
+  font-size: var(--body-lg-font-size);
+  letter-spacing: var(--body-lg-letter-spacing);
+  line-height: var(--body-lg-line-height);
+}
+
+.itemPrice {
+  font-family: var(--body-lg-font-family);
+  font-weight: var(--body-lg-font-weight);
+  color: var(--brand-black);
+  font-size: var(--body-lg-font-size);
+}
+
+/* Discount */
+.discountRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
+.discountInput {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--brand-grey-dark);
+  background: var(--mapped-surface-primary);
+  font-family: var(--body-md-font-family);
+  font-size: var(--body-md-font-size);
+  color: var(--brand-black);
+}
+
+.discountInput::placeholder {
+  color: var(--brand-grey-light);
+}
+
+.discountApply {
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--brand-grey-dark);
+  background: #eee;
+  font-family: var(--body-md-bold-font-family);
+  font-weight: var(--body-md-bold-font-weight);
+  cursor: pointer;
+}
+
+.discountApply:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* Totals */
+.totalsBlock {
+  display: grid;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.totalRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.totalLabel {
+  font-family: var(--body-md-font-family);
+  color: var(--brand-black);
+  font-size: var(--body-md-font-size);
+}
+
+.totalValue {
+  font-family: var(--body-lg-font-family);
+  color: var(--brand-black);
+  font-size: var(--body-lg-font-size);
+}
+
+.shippingValue {
+  font-family: var(--body-md-font-family);
+  color: var(--brand-black);
+  opacity: .7;
+}
+
+/* Final total */
+.totalFinalRow {
+  margin-top: 8px;
+}
+
+.totalFinalLabel {
+  font-family: var(--heading-h6-font-family);
+  color: var(--brand-black);
+  font-size: var(--heading-h6-font-size);
+}
+
+.totalFinalValue {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--body-md-bold-font-family);
+  font-weight: var(--body-md-bold-font-weight);
+  color: var(--brand-black);
+  font-size: var(--body-md-bold-font-size);
+}
+
+.currencyCode {
+  font-family: var(--body-sm-font-family);
+  color: var(--brand-black);
+  letter-spacing: .04em;
+}
+
+/* Optional CTA (kept for Cart) */
+.checkoutCta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background-color: var(--brand-blue-default);
+  border-radius: var(--alias-border-width-lg);
+  cursor: pointer;
+  border: none;
+  color: var(--brand-white-always);
+  font-family: var(--body-md-bold-font-family);
+  font-weight: var(--body-md-bold-font-weight);
+  font-size: var(--body-md-bold-font-size);
+}
+
+.checkoutArrow {
+  width: 20px;
+  height: 20px;
+}
+
+/* Badges kept inside the card */
+.badgesRow {
+  display: grid;
+  gap: 8px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge img { width: 14px; height: 14px; }
+
+.badge span {
+  font-family: var(--body-sm-font-family);
+  color: var(--brand-black);
+  font-size: var(--body-sm-font-size);
+  white-space: nowrap;
+}

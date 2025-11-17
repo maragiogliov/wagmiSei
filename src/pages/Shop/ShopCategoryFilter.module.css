@@ -1,0 +1,60 @@
+.sidebar {
+  width: 160px;
+
+  background-image: url("../../../public/assets/catalogFilterBG.svg");
+  background-repeat: no-repeat;
+  padding: 58px 0 0 16px;
+  display: flex;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 16px;
+  width: 60%;
+}
+
+.filterItem {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 95px;
+  width: 100%;
+  border-radius: 21px;
+  cursor: pointer;
+  text-align: center;
+
+  font-family: var(--body-md-bold-font-family);
+  font-weight: var(--body-md-bold-font-weight);
+  font-size: var(--body-md-bold-font-size);
+  line-height: var(--body-md-bold-line-height);
+  letter-spacing: var(--body-md-bold-letter-spacing);
+  color: var(--brand-black);
+}
+
+/* Variants */
+.filterItem:nth-child(1) {
+  background-color: var(--brand-purple-lighter);
+  border: 1px solid var(--brand-purple-dark);
+  color: var(--brand-purple-default);
+}
+.filterItem:nth-child(2) {
+  background-color: var(--brand-grey-lighter-2);
+  color: var(--brand-yellow-dark);
+}
+.filterItem:nth-child(3) {
+  background-color: var(--brand-teal-lighter);
+  color: var(--brand-green-dark);
+}
+.filterItem:nth-child(4) {
+  background-color: var(--brand-blue-lighter);
+  color: var(--brand-black);
+}
+
+/* Active state */
+.active {
+  outline: 2px solid var(--brand-blue-light);
+  outline-offset: 3px;
+}

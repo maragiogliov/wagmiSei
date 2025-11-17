@@ -1,0 +1,663 @@
+/* Page shell: 2-column grid (items + summary), responsive */
+.cartPage {
+ 
+  background-color: var(--mapped-surface-primary);
+  padding: 24px;
+  padding-top: 42px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 355px;
+  grid-template-rows: auto 1fr;
+  gap: 42px;
+  max-width: var(--page-max);
+  margin: 0 8%;
+}
+
+/* Section header sits above the items column */
+.sectionHeader {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-family: var(--heading-h5-font-family);
+  font-weight: var(--heading-h5-font-weight);
+  color: var(--brand-black);
+  font-size: var(--heading-h5-font-size);
+  letter-spacing: var(--heading-h5-letter-spacing);
+  line-height: var(--heading-h5-line-height);
+  white-space: nowrap;
+}
+
+
+
+.clearAllIcon {
+  width: 15px;
+  height: 15px;
+}
+
+.clearAllText {
+  font-family: var(--body-sm-bold-font-family);
+  font-weight: var(--body-sm-bold-font-weight);
+  color: var(--brand-red-dark);
+  font-size: var(--body-sm-bold-font-size);
+  letter-spacing: var(--body-sm-bold-letter-spacing);
+  line-height: var(--body-sm-bold-line-height);
+  white-space: nowrap;
+}
+
+/* Items column */
+.itemsPane {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+
+  border-radius: 13px;
+}
+.qtyInputGroup, .deleteBtn{
+display:none;
+}
+/* One item card */
+.itemCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border-radius: 13px;
+  background: var(--brand-grey-lighter-2);
+
+      /* Layout */
+  position: relative;
+
+
+
+  /* Soft “glass” fill (fill-opacity="0.2") */
+background: radial-gradient(circle at top left,
+  rgba(255, 255, 255, 0.04) 0%,
+  rgba(255, 255, 255, 0.02) 40%,
+  rgba(255, 255, 255, 0) 100%);
+
+  /* Optional: frosted effect if there's content behind */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  /* Drop shadow similar to the filter */
+  box-shadow:
+    0 2px 2px rgba(165, 166, 166, 0.4);
+
+  /* Smooth hover if you want */
+  transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+/* Main row inside a card: left (info) + right (qty) */
+.itemRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Left side: product image + text */
+.itemInfo {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Image box */
+.itemImageBox {
+  width: 89px;
+  height: 90px;
+  background-color: var(--brand-white);
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--brand-grey-dark);
+}
+
+.itemImage {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+/* Product text */
+.itemText {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  color: var(--brand-black);
+}
+
+.itemTitle {
+  font-family: var(--body-lg-font-family);
+  font-weight: var(--body-lg-font-weight);
+  color: var(--brand-black);
+  font-size: var(--body-lg-font-size);
+  letter-spacing: var(--body-lg-letter-spacing);
+  line-height: var(--body-lg-line-height);
+}
+
+.itemUnitPrice {
+  font-family: var(--body-md-font-family);
+  font-weight: var(--body-md-font-weight);
+  color: var(--brand-blue-default);
+  font-size: var(--body-md-font-size);
+  letter-spacing: var(--body-md-letter-spacing);
+  line-height: var(--body-md-line-height);
+  white-space: nowrap;
+}
+
+.itemSubtotal {
+  font-family: var(--body-sm-font-family);
+  font-weight: var(--body-sm-font-weight);
+  color: var(--brand-black);
+  font-size: var(--body-sm-font-size);
+  letter-spacing: var(--body-sm-letter-spacing);
+  line-height: var(--body-sm-line-height);
+  white-space: nowrap;
+}
+
+/* Qty controls */
+.qtyRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.qtyBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: var(--alias-border-width-lg);
+  border: 1px solid var(--brand-blue-default);
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.iconBox {
+  width: 24px;
+  height: 24px;
+}
+
+/* MAX + value */
+.qtyBadge {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-rows: auto auto;
+  height: 42px;
+  min-width: 41px;
+}
+
+.qtyMax {
+  font-family: var(--body-sm-font-family);
+  font-weight: var(--body-sm-font-weight);
+  color: var(--brand-black);
+  font-size: var(--body-sm-font-size);
+  letter-spacing: var(--body-sm-letter-spacing);
+  line-height: var(--body-sm-line-height);
+  white-space: nowrap;
+}
+
+.qtyValue {
+  font-family: "Satoshi-Bold", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: var(--brand-black);
+  font-size: 16px;
+}
+
+
+
+.itemsLabel,
+.labelText {
+  width: 106px;
+  font-family: var(--body-md-font-family);
+  font-weight: var(--body-md-font-weight);
+  color: var(--brand-black);
+  font-size: var(--body-md-font-size);
+  letter-spacing: var(--body-md-letter-spacing);
+  line-height: var(--body-md-line-height);
+}
+
+.itemsValue {
+  min-width: 64px;
+  text-align: right;
+  font-family: var(--body-lg-font-family);
+  font-weight: var(--body-lg-font-weight);
+  color: var(--brand-black);
+  font-size: var(--body-lg-font-size);
+  letter-spacing: var(--body-lg-letter-spacing);
+  line-height: var(--body-lg-line-height);
+}
+
+.shippingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shippingValue {
+  min-width: 39px;
+  text-align: right;
+  font-family: var(--body-md-font-family);
+  font-weight: var(--body-md-font-weight);
+  color: var(--alias-success);
+  font-size: var(--body-md-font-size);
+  letter-spacing: var(--body-md-letter-spacing);
+  line-height: var(--body-md-line-height);
+  white-space: nowrap;
+}
+
+.taxValue {
+  min-width: 43px;
+  text-align: right;
+  font-family: var(--body-md-font-family);
+  font-weight: var(--body-md-font-weight);
+  color: var(--brand-black);
+  font-size: var(--body-md-font-size);
+  letter-spacing: var(--body-md-letter-spacing);
+  line-height: var(--body-md-line-height);
+}
+
+.summaryDivider {
+  width: 100%;
+  height: 1px;
+  object-fit: cover;
+  opacity: 0.6;
+}
+
+/* Total row */
+.totalLabel {
+  width: 106px;
+  font-family: var(--body-md-bold-font-family);
+  font-weight: var(--body-md-bold-font-weight);
+  color: var(--brand-black);
+  font-size: var(--body-md-bold-font-size);
+  letter-spacing: var(--body-md-bold-letter-spacing);
+  line-height: var(--body-md-bold-line-height);
+}
+
+.totalValue {
+  font-family: var(--body-md-bold-font-family);
+  font-weight: var(--body-md-bold-font-weight);
+  color: var(--brand-black);
+  font-size: var(--body-md-bold-font-size);
+  letter-spacing: var(--body-md-bold-letter-spacing);
+  line-height: var(--body-md-bold-line-height);
+}
+
+/* Checkout CTA */
+.checkoutButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background-color: var(--mapped-surface-action-1);
+  border-radius: var(--alias-border-width-lg);
+  cursor: pointer;
+}
+
+.checkoutLabel {
+  font-family: var(--body-md-bold-font-family);
+  font-weight: var(--body-md-bold-font-weight);
+  color: var(--brand-blue-default);
+  font-size: var(--body-md-bold-font-size);
+  letter-spacing: var(--body-md-bold-letter-spacing);
+  line-height: var(--body-md-bold-line-height);
+  white-space: nowrap;
+}
+
+.checkoutArrowIcon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Notice (optional placeholder) */
+.noticeWrap {
+  display: none;
+}
+
+/* Badges row under summary */
+.badgesRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.badgeSecure,
+.badgeVerified {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 50px;
+  border-radius: 13px;
+  border: 1px solid;
+}
+
+.badgeSecure {
+  background-color: var( --brand-green-light);
+  border-color: var(--brand-green-default);
+}
+
+.badgeSecureInner {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+}
+
+.badgeSecureIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.badgeSecureText {
+  font-family: var(--body-md-font-family);
+  font-weight: var(--body-md-font-weight);
+  color: var(--brand-green-dark);
+  font-size: var(--body-md-font-size);
+}
+
+.badgeVerified {
+  background-color: var(--brand-neon-cards-surface-light-blue);
+  border-color: var(--brand-blue-default);
+}
+
+.badgeVerifiedInner {
+  display: grid;
+  place-items: center;
+  gap: 11px;
+}
+
+.badgeVerifiedIcon {
+  width: 14px;
+  height: 22px;
+}
+
+.badgeVerifiedText {
+  font-family: var(--body-md-font-family);
+  font-weight: var(--body-md-font-weight);
+  color: var(--brand-blue-default);
+  font-size: var(--body-md-font-size);
+}
+
+.deleteBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: var(--mapped-surface-error);
+}
+
+.deleteIcon {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) saturate(100%) invert(31%) sepia(95%) saturate(7461%)
+    hue-rotate(356deg) brightness(100%) contrast(103%);
+}
+
+.desktopControls{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+.mobileControls{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.sectionHeader {
+  align-self: start;    /* stop grid from stretching it vertically */
+  height: auto;         /* be explicit */
+  /* (optional) keep it full-width in its column */
+  justify-self: stretch;
+}
+
+/* Responsive: stack summary under items */
+@media (max-width: 1350px) {
+  .cartPage {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+
+  .summaryAside {
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
+
+  }
+  .badgesRow{
+    justify-content: end;
+  }
+}
+
+
+@media (max-width: 850px) {
+  /* hide desktop controls on mobile */
+  .qtyBtn,
+  .qtyBadge { display: none; }
+
+  /* show mobile controls */
+  .qtyInputGroup,
+  .deleteBtn { display: inline-flex; }
+
+  .qtyInputGroup {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+.clearAllBtn{
+  display: none;
+}
+  .qtyInput {
+    width: 54px;
+    height: 44px;
+    text-align: center;
+    border: 1px solid var(--brand-blue-default);
+    border-radius: 8px;
+    background-color: var(--brand-white);
+    font-family: var(--body-md-font-family);
+    font-size: var(--body-md-font-size);
+    color: var(--brand-black);
+  }
+
+  .qtyInput::-webkit-inner-spin-button,
+  .qtyInput::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+  .qtyInput:focus {
+    outline: 2px solid var(--brand-blue-default);
+    outline-offset: 1px;
+  }
+
+  .qtyMaxText {
+    font-family: var(--body-sm-font-family);
+    font-weight: var(--body-sm-font-weight);
+    color: var(--brand-black);
+    font-size: var(--body-sm-font-size);
+    opacity: 0.7;
+    white-space: nowrap;
+  }
+
+  .deleteBtn {
+ 
+    background-color: transparent;
+    border:none;
+    cursor: pointer;
+  }
+
+  .deleteIcon {
+    width: 22px;
+    height: 22px;
+    /* drop the filter if your asset is already red */
+    filter: brightness(0) saturate(100%) invert(31%) sepia(95%) saturate(7461%) hue-rotate(356deg) brightness(100%) contrast(103%);
+  }
+}
+
+/* Multi-item friendly mobile layout */
+@media (max-width: 800px) {
+  /* tighter page spacing */
+  .cartPage {
+    gap: 20px;
+    padding: 0px;
+    padding-top: 28px;
+    margin: 1rem;
+  }
+
+  .itemCard {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  /* Keep each item a single row: info left, compact controls right */
+  .itemRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Let the left side take the space; right side stays compact */
+  .itemInfo {
+    flex: 1 1 auto;
+    min-width: 0;            /* enable ellipsis */
+    gap: 12px;
+  }
+
+  /* smaller image */
+  .itemImageBox {
+    width: 56px;
+    height: 56px;
+    border-radius: 6px;
+  }
+  .itemImage {
+    width: 54px;
+    height: 54px;
+  }
+
+  /* compress text + ellipsis to avoid wrapping tall cards */
+  .itemText { gap: 4px; }
+  .itemTitle {
+    font-size: calc(var(--body-lg-font-size) - 3px);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .itemUnitPrice {
+    font-size: calc(var(--body-md-font-size) - 2px);
+  }
+  /* hide subtotal on tight screens to save a line */
+  .itemSubtotal { display: none; }
+
+  /* Right side: desktop controls off, mobile on, kept narrow */
+  .qtyBtn,
+  .qtyBadge { display: none; }
+
+  .qtyRow {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 8px;
+  }
+
+  /* input + 'max 10 items' stacked inside a narrow column */
+  .qtyInputGroup {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .qtyInput {
+    width: 46px;
+    height: 36px;
+    text-align: center;
+    border: 1px solid var(--brand-blue-default);
+    border-radius: 6px;
+    background-color: var(--brand-white);
+    font-family: var(--body-md-font-family);
+    font-size: calc(var(--body-md-font-size) - 2px);
+    color: var(--brand-black);
+  }
+  .qtyInput::-webkit-inner-spin-button,
+  .qtyInput::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+  .qtyMaxText {
+    font-size: calc(var(--body-sm-font-size) - 2px);
+    line-height: 1;
+    opacity: .7;
+    white-space: nowrap;
+  }
+
+  /* delete icon inline to the right, compact */
+  .deleteBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .deleteIcon {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) saturate(100%) invert(31%) sepia(95%) saturate(7461%)
+            hue-rotate(356deg) brightness(100%) contrast(103%);
+  }
+
+  /* summary tighten */
+  .summaryAside { gap: 12px; }
+  .badgesRow { gap: 10px; justify-content: flex-end; }
+  .badgeSecure, .badgeVerified { padding: 10px 24px; }
+  .badgeSecureIcon { width: 16px; height: 16px; }
+  .badgeVerifiedIcon { width: 12px; height: 18px; }
+  .badgeSecureText, .badgeVerifiedText {
+    font-size: calc(var(--body-md-font-size) - 2px);
+  }
+
+
+.badgesRow{
+  display: flex
+;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+  /* header tighten + hide 'clear all' if it crushes space */
+  .sectionHeader { gap: 10px; }
+  .sectionTitle {
+    font-size: calc(var(--heading-h5-font-size) - 3px);
+        padding-left: 14px;
+  }
+  .clearAllBtn { padding: 2px 6px; }
+}
+
+

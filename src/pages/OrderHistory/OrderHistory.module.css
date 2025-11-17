@@ -1,0 +1,251 @@
+/* =========================================
+   Order History Layout
+========================================= */
+
+.orderHistoryLight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: var(--mapped-surface-primary);
+  min-height: 100%;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+.orderHistoryContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  width: 100%;
+  gap: 2rem;
+  text-transform: uppercase;
+  max-width: 1400px;
+
+
+ /* Layout */
+  position: relative;
+  padding: 24px;
+  border-radius: 32px; /* similar to the SVG shape */
+
+  /* Border (stroke="#E9F5FE") */
+
+  /* Soft “glass” fill (fill-opacity="0.2") */
+background: radial-gradient(circle at top left,
+  rgba(255, 255, 255, 0.04) 0%,
+  rgba(255, 255, 255, 0.02) 40%,
+  rgba(255, 255, 255, 0) 100%);
+
+  /* Optional: frosted effect if there's content behind */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  /* Drop shadow similar to the filter */
+  box-shadow:
+    0 2px 2px rgba(165, 166, 166, 0.4);
+
+  /* Smooth hover if you want */
+  transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    border-radius: 12px;
+}
+
+
+.textWrapper5 {
+  font-family: var(--body-lg-bold-font-family);
+  font-weight:normal;
+  font-size: var(--body-lg-bold-font-size);
+  line-height: var(--body-lg-bold-line-height);
+  color: var(--brand-black);
+}
+
+.sortableHead {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.sortIcon {
+  font-size: 10px;
+}
+
+
+/* =========================================
+   Scrollable Table Area
+========================================= */
+
+.ohScroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;
+}
+
+/* Grid Header + Rows */
+.ohGrid {
+  display: grid;
+  grid-template-columns:
+    80px   /* # */
+    180px  /* Type */
+    220px  /* Description */
+    220px  /* Order Status */
+    220px  /* Payment Status */
+    180px  /* Date */
+    180px; /* Actions */
+  gap: 12px;
+  align-items: center;
+
+  /* 🔑 KEY PART */
+  /* Remove width: 100%; */
+  /* width: 100%;  <-- DELETE THIS */
+
+  min-width: max-content;       /* grow to fit all columns */
+  /* or, if you prefer something explicit: */
+  /* min-width: 1352px;  // sum of columns + gaps */
+
+  border-bottom: 1px solid var(--brand-blue-lighter);
+}
+
+
+.ohHead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--mapped-surface-primary);
+  padding: 8px 0;
+}
+
+.ohHead > div {
+  font-family: var(--body-md-bold-font-family);
+  font-weight:500;
+  font-size: var(--body-md-bold-font-size);
+  line-height: var(--body-md-bold-line-height);
+  color: var(--brand-black);
+  white-space: nowrap;
+}
+
+.ohRow {
+  padding: 5px 0;
+  border-bottom: 1px solid var(--brand-blue-lighter);
+  background: var(--mapped-surface-primary);
+  position: relative;
+}
+
+/* =========================================
+   Cells
+========================================= */
+
+.numberInfo,
+.dateInfo,
+.hideSm,
+.ohType {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--body-md-bold-font-family);
+  font-weight:500;
+  font-size: var(--body-sm-bold-font-size);
+  line-height: var(--body-md-bold-line-height);
+  color: var(--brand-black);
+}
+
+.ohIco {
+  width: 16px;
+  height: 16px;
+}
+
+
+
+/* =========================================
+   Pills
+========================================= */
+
+.statusDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Color states */
+.success .statusDot {
+  background-color:var(  --brand-green-default); /* green */
+}
+
+.warn .statusDot {
+  background-color: var(--brand-yellow-default); /* yellow */
+}
+
+.error .statusDot {
+  background-color: var(--brand-red-default); /* red */
+}
+
+.info .statusDot {
+  background-color: var(--brand-green-default); /* red */
+}
+
+/* Optional: if you want the pills themselves colored */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--brand-black);
+}
+
+
+/* =========================================
+   Buttons
+========================================= */
+
+.btnGhost {
+ 
+
+  color: var(--brand-black);  cursor: pointer;
+  font-family: var(--body-sm-bold-font-family);
+  font-weight: var(--body-sm-bold-font-weight);
+  font-size: 12px;
+  line-height: var(--body-sm-bold-line-height);
+}
+.btnGhost:hover{
+  color: var(--brand-blue-default);
+}
+
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--brand-blue-default);
+  background: transparent;
+}
+
+.iconBtn img {
+  width: 24px;
+  height: 24px;
+}
+
+/* =========================================
+   Pager
+========================================= */
+
+.ohPager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-top: 2rem;
+  font-family: var(--body-sm-bold-font-family);
+  font-weight: var(--body-sm-bold-font-weight);
+  font-size: var(--body-sm-bold-font-size);
+  line-height: var(--body-sm-bold-line-height);
+  color: var(--brand-black);
+}
+
+

@@ -1,0 +1,112 @@
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  background: var(--mapped-surface-primary);
+}
+
+/* Brand */
+.brandGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.logoText {
+  font-family: "Satoshi-Regular", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  color: var(--brand-black);
+  font-size: 36px;
+  line-height: 36px;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.subtitle {
+  font-family: var(--body-md-font-family);
+  font-weight: var(--body-md-font-weight);
+  font-style: var(--body-md-font-style);
+  font-size: var(--body-md-font-size);
+  line-height: var(--body-md-line-height);
+  letter-spacing: var(--body-md-letter-spacing);
+  color: var(--brand-blue-default);
+  opacity: 0.95;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Actions (credits + cart) */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Cart button */
+.cartButton {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--brand-blue-default);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.icon20 { width: 20px; height: 20px; display: block; }
+.cartLabel {
+  font-family: "Satoshi-Bold", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--brand-black);
+}
+.cartBadge {
+  margin-left: 2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 9px;
+  background: var(--mapped-surface-action-1);
+  color: var(--brand-blue-default);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Satoshi-Bold", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1;
+}
+
+/* Hover / focus polish */
+.cartButton:hover { background: var(--brand-blue-lighter); }
+.creditsAdd:hover { filter: brightness(0.98); }
+.cartButton:focus-visible {
+  outline: 2px solid var(--mapped-border-and-dividers-hightlight);
+  outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .logoText { font-size: 28px; line-height: 32px; }
+  .subtitle { font-size: 13px; }
+}
+@media (max-width: 640px) {
+  .header {
+    gap: 10px;
+  }
+  .actions {
+    justify-content: space-between;
+  }
+  .logoText {
+    font-size: 22px;
+    line-height: 26px;
+  }
+  .subtitle {
+    font-size: 12px;
+    opacity: 0.9;
+  }
+}

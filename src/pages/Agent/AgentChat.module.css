@@ -1,0 +1,288 @@
+.chatColumn {
+  flex: 1;
+  min-height: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  background-color: var(--brand-white);
+  width: 100%;
+}
+
+.messagesList {
+  flex: 1;                    /* pushes composer down */
+  min-height: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 1rem;
+  scrollbar-gutter: stable;
+  min-width: 700px;
+
+}
+
+.messagesInner {
+  max-width: 700px;
+  margin: 0 auto;  /* center content */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+/* Bubbles */
+.assistantBubble {
+  justify-self: start;
+  background: transparent;
+  height: fit-content;
+}
+.userBubble {
+  justify-self: end;
+  max-width: 70ch;
+  border-radius: 12px;
+  height: fit-content;
+  width: fit-content;
+  text-align: left;
+}
+.AgentChat, .frame3{
+  text-align: left;
+}
+.shopSupplements4{
+  margin: 0px;
+  text-align: left;
+  color: var(--brand-black);
+  font-size: 20px;
+  line-height: 26px;
+  border-bottom: 1px solid var(--brand-blue-lighter);
+  padding-bottom: 1rem;
+}
+.bodyCopy{
+  margin: 0px;
+}
+.longevityEnhaced2{
+  color: var(--brand-black);
+}
+
+.frame2 { display:inline-flex; flex-direction:column; gap:24px;     padding: 12px 6px 24px 6px; }
+.frame3 { display:inline-flex; flex-direction:column; gap:12px; }
+.bodyCopy { font: 400 16px/24px "Satoshi-Regular", Helvetica, Arial, sans-serif; color: var(--brand-black); }
+
+
+.bodyCopyDescription{
+  font: 400 16px/16px "Satoshi-Regular", Helvetica, Arial, sans-serif; color: var(--brand-black); 
+}
+
+.bodyCopyCategory{
+    font: 400 16px/24px "Satoshi-Regular", Helvetica, Arial, sans-serif; color: var(--brand-black); margin-top:0px; 
+}
+
+/* Composer */
+.composer {
+  min-height: 10vh;
+  position: sticky;          /* plays nicer with mobile keyboards than fixed */
+  bottom: 1rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 12px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  background: var(--mapped-surface-primary);
+
+
+        /* Layout */
+  align-items: flex-start;
+  width: 700px;
+
+
+
+  /* Soft “glass” fill (fill-opacity="0.2") */
+background: radial-gradient(circle at top left,
+  rgba(255, 255, 255, 0.04) 0%,
+  rgba(255, 255, 255, 0.02) 40%,
+  rgba(255, 255, 255, 0) 100%);
+
+  /* Optional: frosted effect if there's content behind */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  /* Drop shadow similar to the filter */
+  box-shadow:
+    0 2px 2px rgba(165, 166, 166, 0.4);
+
+  /* Smooth hover if you want */
+  transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  margin: 0rem 0rem 0rem 0rem;
+    border-radius: 12px;
+    text-wrap: none;
+}
+
+.inputText {
+  flex: 1;
+  height: 44px;
+  padding: 0 12px;
+  border: none;
+  outline: none;
+  background: var(--brand-blue-llighter);
+  border-radius: var(--alias-border-width-lg);
+  font: 400 16px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif;
+  color: var(--brand-black);
+  resize: none;        
+
+}
+
+.icon24 { width:24px; height:24px; }
+
+.sendButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  background: var(--brand-blue-default);
+  border: none;
+  border-radius: var(--alias-border-radius-md);
+  cursor: pointer;
+}
+
+/* Products */
+.productsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+.productCard {
+  position: relative;           /* 👈 allows absolute positioning inside */
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(128, 128, 128, 0.11);
+
+
+   /* Layout */
+  position: relative;
+  padding: 24px;
+  border-radius: 32px; /* similar to the SVG shape */
+
+  /* Border (stroke="#E9F5FE") */
+
+  /* Soft “glass” fill (fill-opacity="0.2") */
+background: radial-gradient(circle at top left,
+  rgba(255, 255, 255, 0.04) 0%,
+  rgba(255, 255, 255, 0.02) 40%,
+  rgba(255, 255, 255, 0) 100%);
+
+  /* Optional: frosted effect if there's content behind */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  /* Drop shadow similar to the filter */
+  box-shadow:
+    0 2px 2px rgba(165, 166, 166, 0.4);
+
+  /* Smooth hover if you want */
+  transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    border-radius: 12px;
+}
+
+.productImage {
+  flex: 0 0 20%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  object-fit: contain;
+  background: var(--brand-white-always);
+  padding: 6px;
+  margin-right: 12px;
+}
+
+.productMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+/* bottom-right floating icons */
+.productActions {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: var(--brand-blue-default);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.iconButton:hover {
+  transform: scale(1.05);
+  background: var(--brand-blue-dark, #0070f3);
+}
+
+.actionIcon {
+  width: 14px;
+  height: 14px;
+  filter: brightness(0) invert(1); /* ensures white icons if needed */
+}
+
+
+.productName {
+  font: 500 15px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif;
+  color: var(--brand-black);
+  font-size: var(--heading-h6-font-size);
+  line-height: 28px;
+  margin-bottom: 0rem;
+}
+
+.productPrice {
+  font: 400 14px/18px "Satoshi-Regular", Helvetica, Arial, sans-serif;
+  color: var(--brand-black);
+  opacity: 0.75;
+}
+
+
+
+@media (max-width: 768px) {
+
+.messagesList {
+
+  width: 90vw
+}
+
+.bodyCopyCategory{
+display: none;
+}
+.bodyCopyDescription{
+  margin-top: 0px;
+  font-size: 13px;
+}
+
+
+/* Composer */
+.composer {
+
+  width: 90%;
+
+}
+.frame2{
+  width: 291px;
+}
+}

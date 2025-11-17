@@ -1,0 +1,126 @@
+.filtersBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0 12px;
+  background: var(--mapped-surface-primary);
+}
+
+/* Group label + controls */
+.group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* Labels */
+.groupLabel {
+  font-family: var(--body-lg-font-family);
+  font-weight: var(--body-lg-font-weight);
+  font-style: var(--body-lg-font-style);
+  font-size: var(--body-lg-font-size);
+  line-height: var(--body-lg-line-height);
+  letter-spacing: var(--body-lg-letter-spacing);
+  color: var(--brand-black);
+  white-space: nowrap;
+}
+
+/* Chips row: horizontally scrollable on small screens */
+.chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow-x: auto;
+  padding-bottom: 2px; /* avoid clipping focus ring */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.chip {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  color: var(--brand-black);
+  cursor: pointer;
+  white-space: nowrap;
+
+  /* Reserve border space to prevent movement */
+  border: 1px solid transparent;
+  border-radius: var(--alias-border-radius-lg);
+}
+
+.chip:hover {
+  background: var(--brand-neon-cards-surface-light-blue);
+  border-color: var(--brand-blue-default);
+}
+
+.chip.active,
+.chip[aria-selected="true"] {
+  background: var(--brand-neon-cards-surface-light-blue);
+  border-color: var(--brand-blue-default);
+}
+
+
+/* Optional icon if you enable it in JSX */
+.chipIcon { width: 12px; height: 12px; display: block; }
+.chipText { font: 700 12px/20px "Satoshi-Bold", Helvetica, Arial, sans-serif; }
+
+/* Sort controls */
+.sortBtns {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sortBtn {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: var(--alias-border-radius-lg);
+  border: 1px solid var(--brand-blue-default);
+  background: var(--mapped-surface-primary);
+  color: var(--brand-black);
+  cursor: pointer;
+  font-family: var(--body-sm-bold-font-family);
+  font-weight: var(--body-sm-bold-font-weight);
+  font-style: var(--body-sm-bold-font-style);
+  font-size: var(--body-sm-bold-font-size);
+  line-height: var(--body-sm-bold-line-height);
+  letter-spacing: var(--body-sm-bold-letter-spacing);
+}
+
+.sortBtn:hover {
+  background: var(--brand-blue-lighter);
+  border-color: var(--brand-blue-light);
+}
+
+.sortBtn:focus-visible {
+  outline: 2px solid var(--mapped-border-and-dividers-hightlight);
+  outline-offset: 2px;
+}
+
+/* Active sort */
+.sortBtn.active,
+.sortBtn[aria-checked="true"] {
+  background: var(--mapped-surface-action-1);
+  border-color: var(--mapped-surface-action-1);
+  color: var(--brand-blue-default);
+  box-shadow: 0 0 0 2px var(--brand-blue-light); /* outside ring */
+}
+
+/* Layout tweaks */
+@media (max-width: 768px) {
+  .filtersBar { gap: 10px; }
+  .group {
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

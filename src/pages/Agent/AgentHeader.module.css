@@ -1,0 +1,261 @@
+/* Consistent header height everywhere */
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 57px;
+  min-width: 0;
+  border-bottom: 1px solid var(--mapped-border-and-dividers-primary);
+    margin: 0px 12px;
+}
+
+.headerSection{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  /* border: 2px solid red;  // remove debug when done */
+}
+
+.icon24 { width: 24px; height: 24px; }
+
+.brand {
+  font-family: var(--heading-md-font-family);
+  font-weight: var(--heading-md-font-weight);
+  font-size: var(--heading-md-font-size);
+  color: var(--brand-black);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+
+.rightSide {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Credits (unchanged from your version except display tidy) */
+.goldContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.gold { 
+  width:32px; 
+  height:32px; 
+  position:relative; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.vector { position:absolute; width:29px; height:21px; top:5px; left:1px; }
+.counterText {
+  font-family: var(--body-md-bold-font-family);
+  font-weight: var(--body-md-bold-font-weight);
+  font-size: var(--body-md-bold-font-size);
+  color: var(--brand-black);
+}
+
+/* Cart button — always present */
+.cartButton {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  cursor: pointer;
+  position: relative; /* for badge */
+}
+
+.cartButton:hover { background: var(--brand-blue-lighter); }
+.cartButton:focus-visible {
+  outline: 2px solid var(--mapped-border-and-dividers-hightlight);
+  outline-offset: 2px;
+}
+
+.cartIcon { width: 22px; height: 22px; }
+
+/* Badge (only when there are items) */
+.cartHasItems::after {
+  content: attr(data-count);
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 1px 1px;
+  border-radius: 999px;
+  background:  var(--brand-blue-dark); /* primary color */
+  color: var(--brand-white);
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* hidden by default on desktop */
+.mobileToggle {
+  all: unset;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 8px;
+}
+.mobileToggle:hover { background: var(--brand-blue-lighter); }
+.mobileToggle:focus-visible {
+  outline: 2px solid var(--mapped-border-and-dividers-hightlight);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------- */
+/* Inline search shown on same row as the icon    */
+/* ---------------------------------------------- */
+.inlineSearch {
+  flex: 0 1 50%;
+  max-width: 50%;
+  min-width: 400px;
+  display: none;
+}
+
+.inlineSearchOpen {
+  display: block;
+  animation: inlineSearchIn 180ms ease;
+}
+
+@keyframes inlineSearchIn {
+  from { opacity: 0; transform: translateX(6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Field layout */
+.inlineSearchField {
+  display: flex;
+  align-items: center;
+}
+
+.inlineSearchInput {
+  flex: 1;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid rgba(0,0,0,0.14);
+  border-radius: 4px;
+  font-size: 15px;
+  color: var(--brand-black);
+  outline: none;
+  background: var(--brand-blue-lighter);
+}
+.inlineSearchInput::placeholder { color: var(--brand-black); }
+.inlineSearchInput:focus {
+  border-color: var(--brand-blue, #1d4ed8);
+  box-shadow: 0 0 0 3px rgba(29,78,216,0.15);
+}
+
+/* Remove magnifier background (plain icon button) */
+.searchButton {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.searchButton:hover {
+  background: transparent;
+}
+.searchButton img {
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 768px) {
+  .inlineSearch {
+    flex: 1 1 auto;
+    max-width: none;
+    min-width: 0;
+  }
+  .inlineSearchInput { height: 38px; }
+}
+
+/* --- Mobile full-width search (hidden by default) --- */
+.mobileSearch {
+  display: none;
+}
+
+/* Desktop keeps inline search; mobile uses the bar */
+@media (max-width: 768px) {
+  /* Ensure the desktop inline search never shows on mobile */
+  .inlineSearch,
+  .inlineSearch.inlineSearchOpen {
+    display: none !important;
+  }
+
+  .mobileSearch {
+    display: none;
+    background: var(--mapped-surface-primary);
+    border-bottom: 1px solid var(--mapped-border-and-dividers-primary);
+    padding: 8px 12px;
+  }
+
+  .mobileSearchOpen {
+    display: block;
+    animation: inlineSearchIn 180ms ease; /* reuse your keyframes */
+  }
+
+  .mobileSearchField {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobileSearchInput {
+    flex: 1;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid rgba(0,0,0,0.14);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--brand-black);
+    background: transparent;
+    outline: none;
+  }
+  .mobileSearchInput::placeholder { color: rgba(0,0,0,0.45); }
+  .mobileSearchInput:focus {
+    border-color: var(--brand-blue, #1d4ed8);
+    box-shadow: 0 0 0 3px rgba(29,78,216,0.15);
+  }
+
+  .mobileSearchClose {
+    all: unset;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .mobileSearchClose:hover { background: var(--brand-blue-lighter); }
+}
+
+/* (your existing styles below) */
+
+
+
+/* show on mobile */
+@media (max-width: 768px) {
+  .mobileToggle { display: inline-flex; }
+  .headerInner { justify-content: space-between; }
+  .rightSide { gap: 8px; }
+  .cartButton { width: 38px; height: 38px; }
+  .cartIcon { width: 20px; height: 20px; }
+}

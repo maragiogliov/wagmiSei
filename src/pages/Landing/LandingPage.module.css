@@ -1,0 +1,530 @@
+.landingMainContainer{
+  background-color:var(--brand-white);
+    z-index: 1; 
+}
+
+
+.landingLightMode {
+  align-items: center;
+
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  z-index: 1; 
+}
+
+
+
+.vector2 {
+  height: 16.19px;
+  position: relative;
+  width: 32.38px;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 3rem;
+  width: 900px;
+}
+
+.titleContainer {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  width: 818px;
+}
+
+.title {
+  align-self: stretch;
+  color: var(--brand-blue-dark);
+  font-family: "Satoshi-Bold", Helvetica;
+  font-size: 100px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 72px;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+}
+
+.subtitle {
+  align-self: stretch;
+  color: var(--brand-black);
+  font-family: var(--body-lg-font-family);
+  font-size: var(--body-lg-font-size);
+  font-style: var(--body-lg-font-style);
+  font-weight: var(--body-lg-font-weight);
+  letter-spacing: var(--body-lg-letter-spacing);
+  line-height: var(--body-lg-line-height);
+  position: relative;
+  text-align: center;
+}
+
+.creditsContainer {
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  padding: 26px 17px;
+  position: relative;
+
+
+  box-shadow: 0 4px 30px rgba(108, 108, 108, 0.1);
+backdrop-filter: blur(17.7px);
+-webkit-backdrop-filter: blur(17.7px);
+border: 1px solid rgba(255, 255, 255, 0.173);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+.creditsContainer:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 2px 10px rgba(255, 255, 255, 0.05);
+}
+
+.divWrapper {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  margin-top: -3px;
+  position: relative;
+  width: 100%;
+}
+
+
+.divTwo {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  position: relative;
+}
+
+.inputPlaceholderWrapper {
+  align-items: center;
+
+  border-radius: var(--alias-border-width-lg);
+  display: flex;
+  gap: 10px;
+  padding: 24px 12px;
+  position: relative;
+  width: 700px;
+
+  box-shadow: 0 4px 30px rgba(108, 108, 108, 0.1);
+backdrop-filter: blur(17.7px);
+-webkit-backdrop-filter: blur(17.7px);
+border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.realInput {
+  position: absolute;
+  inset: 0;                
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0 12px;         
+  font: inherit;          
+  color: var(--brand-black);
+}
+
+
+/* Hide the browser placeholder visuals if any */
+.realInput::placeholder {
+  color: transparent;
+}
+
+/* Keep the cursor and focus feel without changing your visuals */
+.realInput:focus {
+  outline: none;
+}
+.inputPlaceholder {
+  color: var(--brand-grey-light);
+  font-family: "Satoshi-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-bottom: -9px;
+  margin-top: -11px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.buttonIcon {
+  align-items: center;
+  background-color: var(--brand-blue-default);
+  border-radius: var(--alias-border-radius-md);
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  padding: 12px;
+  position: relative;
+  border: none;
+}
+
+.send {
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+.send:hover{
+  cursor:pointer;
+}
+.actionsContainer {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.actionCard {
+  align-items: center;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 17px;
+  position: relative;
+
+box-shadow: 0 4px 30px rgba(108, 108, 108, 0.1);
+backdrop-filter: blur(17.7px);
+-webkit-backdrop-filter: blur(17.7px);
+border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+
+
+
+.actionIcon {
+  height: 39px;
+  position: relative;
+  width: 39px;
+  filter: drop-shadow(0 2px 34px var(--brand-white-always));
+
+}
+
+.orderHistoryTitle,
+.shopSupplementsTitle,
+.viewVisitsTitle {
+  font-family: var(--body-md-bold-font-family);
+  font-size: var(--body-md-bold-font-size);
+  font-style: var(--body-md-bold-font-style);
+  font-weight: var(--body-md-bold-font-weight);
+  letter-spacing: var(--body-md-bold-letter-spacing);
+  line-height: var(--body-md-bold-line-height);
+  position: relative;
+  text-align: center;
+  width: 145px;
+  color: var(--brand-green-darker);
+}
+
+.orderHistoryTitle {
+  color: var(--brand-purple-dark);
+}
+
+
+.viewVisitsTitle {
+  color: var(--brand-blue-dark);
+}
+
+.orderHistorySubtitle,
+.shopSupplementsSubtitle,
+.viewVisitsSubtitle {
+ 
+  font-family: var(--body-md-font-family);
+  font-size: var(--body-md-font-size);
+  font-style: var(--body-md-font-style);
+  font-weight: var(--body-md-font-weight);
+  letter-spacing: var(--body-md-letter-spacing);
+  line-height: var(--body-md-line-height);
+  position: relative;
+  text-align: center;
+  width: 215px;
+}
+
+.shopSupplementsSubtitle {
+  color: var(--brand-green-dark);
+}
+
+.orderHistorySubtitle{
+  color: var(--brand-purple-darker);
+}
+
+.viewVisitsSubtitle {
+  color: var(--brand-blue-dark);
+}
+
+
+.cornerWords {
+
+ 
+  width: 100vw;
+
+  color: var(--brand-blue-dark);
+
+
+
+
+}
+
+.corner {
+  position: absolute;
+  font-size: 0.9rem;
+  transition: opacity 0.5s ease;
+  z-index: 9999999;
+}
+
+.topLeft {
+  top: 1.5rem;
+  left: 1.5rem;
+}
+
+.topRight {
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.bottomLeft {
+  bottom: 1.5rem;
+  left: 1.5rem;
+}
+
+.bottomRight {
+  bottom: 1.5rem;
+  right: 1.5rem;
+}
+
+/* optional: subtle hover shimmer */
+.cornerWords:hover .corner {
+  opacity: 0.7;
+}
+
+/* Tablets and small laptops */
+@media (max-width: 990px) {
+  .container {
+    gap: 28px;
+    width: 98%;
+  }
+
+  .header {
+    margin: 1rem 0 3rem;
+    width: 96%;
+  }
+
+  .titleContainer {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 64px;
+    line-height: 68px;
+  }
+
+  .subtitle {
+    margin: 0 auto;
+    max-width: 32rem;
+  }
+
+  .creditsContainer {
+    width: 90%;
+  }
+
+  .creditsWrapper {
+    height: auto;
+  }
+
+  .credits {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .creditsBadge {
+    gap: 10px;
+    width: auto;
+  }
+
+  .divTwo {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .inputPlaceholderWrapper {
+   border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    width: 100%;
+
+  }
+
+  .actionsContainer {
+    gap: 16px;
+    width: auto;
+    display: none;
+  }
+}
+
+/* Large phones / portrait tablets */
+@media (max-width: 768px) {
+  .title {
+    font-size: 48px;
+    line-height: 54px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    line-height: 22px;
+    padding: 0 8px;
+  }
+
+  .badgeWrapper {
+    padding: 4px 8px;
+  }
+
+  .vector2 {
+    height: 14px;
+    width: 28px;
+  }
+
+  .actionsContainer {
+    flex-direction: column;
+  }
+
+  .actionCard {
+    width: 100%;
+  }
+
+  .buttonIcon {
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .send {
+    height: 22px;
+    width: 22px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .header {
+    margin-bottom: 2rem;
+  }
+
+  .logo {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .title {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .creditsContainer {
+    gap: 10px;
+    padding: 18px 12px;
+  }
+
+  .credits {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .creditsText,
+  .buyMoreText,
+  .freeCreditsText {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .inputPlaceholderWrapper {
+    padding: 14px 12px;
+  }
+
+  .inputPlaceholder {
+    font-size: 15px;
+    line-height: 20px;
+    white-space: normal;
+  }
+
+  .actionIcon {
+    height: 34px;
+    width: 34px;
+  }
+
+  .orderHistoryTitle,
+  .shopSupplementsTitle,
+  .viewVisitsTitle {
+    font-size: 16px;
+  }
+
+  .orderHistorySubtitle,
+  .shopSupplementsSubtitle,
+  .viewVisitsSubtitle {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+
+/* Tabs */
+.tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  position: relative;
+
+box-shadow: 0 4px 30px rgba(108, 108, 108, 0.1);
+backdrop-filter: blur(17.7px);
+-webkit-backdrop-filter: blur(17.7px);
+border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 0.6spx solid var(--brand-grey-light);
+  width: fit-content;
+}
+.tab {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-family: var(--body-sm-bold-font-family, "Satoshi-Regular");
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-black);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.08s ease;
+
+}
+.tabActive {
+  background: var(--brand-blue-default);
+  color: var(--brand-white-always);
+  transform: translateY(-1px);
+}

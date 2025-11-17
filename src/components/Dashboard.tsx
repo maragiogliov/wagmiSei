@@ -10,6 +10,8 @@ import {
 } from 'wagmi';
 import { parseEther, formatEther, formatUnits } from 'viem';
 import { ERC20_ABI, TOKEN_CONTRACT_ADDRESS } from '../shared/constants';
+import "@rainbow-me/rainbowkit/styles.css";
+
 
 export function Dashboard() {
   const [recipient, setRecipient] = useState('');
@@ -131,7 +133,7 @@ export function Dashboard() {
       ? formatEther(amuletBalance)
       : null;
 
-  return (
+  return  (
     <div className="dashboard">
       {/* Top row: wallet overview + balances + token info */}
       <section className="dashboard-grid">
@@ -284,3 +286,5 @@ export function Dashboard() {
     </div>
   );
 }
+
+export default Dashboard;   

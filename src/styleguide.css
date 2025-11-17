@@ -1,0 +1,196 @@
+:root {
+  --alias-border-radius-lg: var(--brand-scale-200);
+  --alias-border-radius-md: var(--brand-scale-100);
+  --alias-border-width-lg: var(--brand-scale-100);
+
+  --body-lg-bold-font-family: "Satoshi", Helvetica;
+  --body-lg-bold-font-size: 20px;
+  --body-lg-bold-font-style: normal;
+  --body-lg-bold-font-weight: 700;
+  --body-lg-bold-letter-spacing: 0px;
+  --body-lg-bold-line-height: 32px;
+  --body-lg-font-family: "Satoshi", Helvetica;
+  --body-lg-font-size: 20px;
+  --body-lg-font-style: normal;
+  --body-lg-font-weight: 400;
+  --body-lg-letter-spacing: 0px;
+  --body-lg-line-height: 32px;
+  --body-md-bold-font-family: "Satoshi", Helvetica;
+  --body-md-bold-font-size: 16px;
+  --body-md-bold-font-style: normal;
+  --body-md-bold-font-weight: 700;
+  --body-md-bold-letter-spacing: 0px;
+  --body-md-bold-line-height: 24px;
+  --body-md-font-family: "Satoshi", Helvetica;
+  --body-md-font-size: 16px;
+  --body-md-font-style: normal;
+  --body-md-font-weight: 400;
+  --body-md-letter-spacing: 0px;
+  --body-md-line-height: 24px;
+  --body-md-link-font-family: "Satoshi", Helvetica;
+  --body-md-link-font-size: 16px;
+  --body-md-link-font-style: normal;
+  --body-md-link-font-weight: 400;
+  --body-md-link-letter-spacing: 0px;
+  --body-md-link-line-height: 24px;
+  --body-sm-bold-font-family: "Satoshi", Helvetica;
+  --body-sm-bold-font-size: 12px;
+  --body-sm-bold-font-style: normal;
+  --body-sm-bold-font-weight: 700;
+  --body-sm-bold-letter-spacing: 0px;
+  --body-sm-bold-line-height: 20px;
+  --body-sm-font-family: "Satoshi", Helvetica;
+  --body-sm-font-size: 12px;
+  --body-sm-font-style: normal;
+  --body-sm-font-weight: 400;
+  --body-sm-letter-spacing: 0px;
+  --body-sm-line-height: 20px;
+
+ 
+
+
+  
+
+
+
+
+
+
+
+  --brand-white: rgba(255, 255, 255, 1);
+  --brand-white-always: rgba(255, 255, 255, 1);
+  --brand-black: #192438;
+  --brand-black-always: #192438;
+
+
+  --brand-20-black: rgba(0, 0, 0, 0.2);
+
+
+  --brand-blue-dark: #0056c9;
+  --brand-blue-darker: rgb(28, 50, 78);
+  --brand-blue-default: #1d7afc;
+  --brand-blue-light: #549dfc;
+  --brand-blue-lighter: #e8e8e8;
+  --brand-green-dark: #1d6e4f;
+  --brand-green-darker: rgba(24, 86, 62, 1);
+  --brand-green-default: #22a06b;
+  --brand-green-light: #46ce9a;
+  --brand-green-lighter: #dffcf1;
+
+
+  --brand-grey-dark: #465670;
+  --brand-grey-darker: #071f41;
+  --brand-grey-default: #758195;
+  --brand-grey-light: #8490a1;
+  --brand-grey-lighter: #e6e6e6;
+  --brand-grey-lighter-2: #f9fafc;
+
+  --brand-checkoutpage-bg-blue: #2a3549;
+  --brand-checkoutpage-bg-grey: #eaeaea;
+
+
+
+  --brand-neon-cards-surface-light-blue: #e9f5fe;
+  --brand-neon-cards-surface-dark-blue: #192438;
+  --brand-neon-cards-surface-light-blue-transparency: rgba(233, 245, 254, 0.153);
+
+     --brand-neon-cards-surface-light-blue-transparency-cards: rgba(30, 63, 97, 1);
+
+  --brand-neon-cards-surface-light-green: #e8f9f2;
+  --brand-neon-cards-surface-light-green-transparency: rgba(28, 55, 66, 1);
+
+  --brand-neon-cards-surface-light-purple: #f7edff;
+  --brand-neon-cards-surface-light-purple-transparency: rgba(44, 44, 80);
+
+  --brand-orange-default: #d97008;
+  --brand-purple-dark: #5e4eaf;
+  --brand-purple-darker: #362c62;
+  --brand-purple-default: #8270db;
+  --brand-purple-light: #9e90ec;
+  --brand-purple-lighter: #f2f0fe;
+  --brand-red-darker: #601e17;
+  --brand-red-default: #e34935;
+  --brand-red-lighter: #ffedea;
+  --brand-teal-darker: #22565b;
+  --brand-teal-lighter: #bff0f5;
+
+  --brand-yellow-default: #facc15;
+  --brand-yellow-dark: #805f10;
+  --brand-yellow-lighter: #fff7d7;
+
+
+
+    /* ----------------------------------
+     Ghost Background Palette (Light)
+     ---------------------------------- */
+  --brand-ghostbackground-bg1: #d1e0f5;
+  --brand-ghostbackground-bg2: #e6e6e6;
+
+  --brand-ghostbackground-c1:#549dfc;
+  --brand-ghostbackground-c2: #9e90ec;
+  --brand-ghostbackground-c3: #e9f2ff;
+  --brand-ghostbackground-c4: #f9fafc;
+  --brand-ghostbackground-c5: #f9fafc;
+  --brand-ghostbackground-interactive: #f9fafc;
+
+
+
+
+    /* ----------------------------------
+     Inverted Ghost Background Palette (Light)
+     ---------------------------------- */
+
+  --brand-ghostbackground-bg1-inverted: #d1e0f5;
+  --brand-ghostbackground-bg2-inverted:  #e6e6e6;
+
+
+  --brand-ghostbackground-c1-inverted: #549dfc;
+  --brand-ghostbackground-c2-inverted: #549dfc;
+  --brand-ghostbackground-c3-inverted: #343d8f;  
+  --brand-ghostbackground-c4-inverted: #21507e;  
+  --brand-ghostbackground-c5-inverted: #174068ae;  
+  --brand-ghostbackground-interactive-inverted: #192438;
+  
+  --brand-scale-100: 4px;
+  --brand-scale-200: 8px;
+  --brand-scale-50: 2px;
+
+
+
+
+
+  --safe-radius: 260px;  
+  --safe-feather: 80px;   
+
+
+  --heading-h1-font-family: "Satoshi", Helvetica;
+  --heading-h1-font-size: 60px;
+  --heading-h1-font-style: normal;
+  --heading-h1-font-weight: 700;
+  --heading-h1-letter-spacing: 0px;
+  --heading-h1-line-height: 72px;
+  --heading-h3-font-family: "Satoshi", Helvetica;
+  --heading-h3-font-size: 40px;
+  --heading-h3-font-style: normal;
+  --heading-h3-font-weight: 700;
+  --heading-h3-letter-spacing: 0px;
+  --heading-h3-line-height: 48px;
+  --heading-h4-font-family: "Satoshi", Helvetica;
+  --heading-h4-font-size: 32px;
+  --heading-h4-font-style: normal;
+  --heading-h4-font-weight: 700;
+  --heading-h4-letter-spacing: 0px;
+  --heading-h4-line-height: 40px;
+  --heading-h5-font-family: "Satoshi", Helvetica;
+  --heading-h5-font-size: 24px;
+  --heading-h5-font-style: normal;
+  --heading-h5-font-weight: 700;
+  --heading-h5-letter-spacing: 0px;
+  --heading-h5-line-height: 28px;
+  --heading-h6-font-family: "Satoshi", Helvetica;
+  --heading-h6-font-size: 20px;
+  --heading-h6-font-style: normal;
+  --heading-h6-font-weight: 700;
+  --heading-h6-letter-spacing: 0px;
+  --heading-h6-line-height: 24px;
+}

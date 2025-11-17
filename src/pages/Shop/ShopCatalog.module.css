@@ -1,0 +1,29 @@
+.catalogWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+}
+
+/* Two-column layout: 1 for filter, 3 for products */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start; /* ensures filter stays at natural height */
+  justify-items: start;
+}
+
+/* Make sure filter keeps its own height */
+.layout > :first-child {
+  height: 490px;
+}
+
+/* Mobile: stack filter above products */
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .catalogWrapper{
+    width: 90%;
+  }
+}
