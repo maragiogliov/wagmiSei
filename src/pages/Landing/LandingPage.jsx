@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import styles from './LandingPage.module.css';
 import GhostBackground from '../../components/GhostBackground/GhostBackground';
 import RotatingSubtitle from '../../components/RotatingSubtitle';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
 
 
 
@@ -151,6 +153,7 @@ function LandingPage() {
           >
             SIGN UP
           </button>
+      <ConnectButton />
         </div>
   </span>
   <span className={`${styles.corner} ${styles.bottomLeft}`}>.</span>

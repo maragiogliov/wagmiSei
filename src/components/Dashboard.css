@@ -1,0 +1,204 @@
+/* src/components/Dashboard.css */
+
+/* Outer shell similar to .authShell but focused on one card */
+.dashboardShell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--brand-white);
+}
+
+/* Main card, inspired by .authCard */
+.dashboardCard {
+  width: 100%;
+  max-width: 960px;
+  border-radius: 24px;
+  background: radial-gradient(
+    circle at top left,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  padding: 24px 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header: brand + connect button */
+.dashboardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dashboardHeaderText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dashboardBrand {
+  font-family: var(--body-lg-bold-font-family, "Satoshi-Regular");
+  font-weight: var(--body-lg-bold-font-weight, 700);
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-blue-default);
+  margin: 0;
+}
+
+.dashboardTagline {
+  margin: 0;
+  font-family: var(--body-sm-font-family, "Satoshi-Regular");
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--brand-black);
+  opacity: 0.8;
+}
+
+/* Grid of sections, similar spirit to sideCard / KPIs */
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.dashboardSection {
+  border-radius: 16px;
+  border: 1px solid var(--brand-grey-light);
+  background: var(--brand-grey-lighter-2);
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Labels + values, reusing Auth’s text scales */
+.dashboardLabel {
+  font-family: var(--body-xs-font-family, "Satoshi-Regular");
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--brand-grey-dark);
+  margin: 0;
+}
+
+.dashboardValue {
+  font-family: var(--body-md-font-family, "Satoshi-Regular");
+  font-size: 14px;
+  color: var(--brand-black);
+  margin: 0;
+}
+
+.dashboardValueMono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 13px;
+}
+
+/* Section titles */
+.dashboardSectionTitle {
+  font-family: var(--body-md-bold-font-family, "Satoshi-Regular");
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--brand-black);
+  margin: 0 0 4px;
+}
+
+/* Simple form styling, echoing Auth’s .field / .input / .primaryButton */
+.dashboardForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.dashboardField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dashboardInput {
+  border-radius: 10px;
+  border: 1px solid var(--brand-grey-light);
+  background: var(--brand-grey-lighter-2);
+  padding: 10px 12px;
+  font-family: var(--body-sm-font-family, "Satoshi-Regular");
+  font-size: 14px;
+  color: var(--brand-black);
+  outline: none;
+  transition: border 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.dashboardInput::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.dashboardInput:focus {
+  border-color: var(--brand-blue-default);
+  box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.18);
+  background: var(--brand-white-always);
+}
+
+.dashboardPrimaryButton {
+  margin-top: 4px;
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-family: var(--body-sm-bold-font-family, "Satoshi-Regular");
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-white-always);
+  background: var(--brand-blue-default);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.15s ease, transform 0.08s ease, box-shadow 0.15s ease;
+}
+
+.dashboardPrimaryButton:disabled {
+  opacity: 0.5;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+.dashboardError {
+  margin: 6px 0 0;
+  font-family: var(--body-xs-font-family, "Satoshi-Regular");
+  font-size: 12px;
+  color: #f97373;
+}
+
+/* Links */
+.dashboardLink {
+  font-family: var(--body-xs-font-family, "Satoshi-Regular");
+  font-size: 12px;
+  color: var(--brand-blue-default);
+  text-decoration: underline;
+}
+
+/* Mobile tweaks */
+@media (max-width: 767px) {
+  .dashboardShell {
+    padding: 16px 12px;
+  }
+
+  .dashboardCard {
+    padding: 20px 16px 24px;
+    border-radius: 18px;
+  }
+}
