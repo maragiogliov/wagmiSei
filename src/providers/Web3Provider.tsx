@@ -1,10 +1,5 @@
-/* eslint-disable react-refresh/only-export-components */
-import React, {
-  useEffect,
-  useMemo,
-  useState,
-  createContext,
-} from "react";
+// src/providers/Web3Provider.tsx
+import React, { useEffect, useMemo, useState } from "react";
 import { WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
@@ -15,30 +10,58 @@ import {
 import { config } from "../wagmi";
 import { createSiweAdapter } from "../auth/siwe";
 import type { AuthStatus } from "../auth/siwe";
-
-export const AuthStatusContext = createContext<AuthStatus>("loading");
+import { AuthStatusContext } from "./AuthStatusContext"; // ✅ moved to separate file
 
 const queryClient = new QueryClient();
 
-const Web3Provider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+// Same base URL used by your SIWE adapter
+const API_BASE =
+  import.meta.env.MODE === "production"
+    ? "https://siwe-server.vercel.app"
+    : "";
+
+type Props = {
+  children: React.ReactNode;
+};
+
+const Web3Provider: React.FC<Props> = ({ children }) => {
   const [authStatus, setAuthStatus] = useState<AuthStatus>("loading");
 
-  // Load SIWE session
+  //
+  // 🔹 Check existing SIWE session on mount
+  //
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch("/api/siwe/me", { credentials: "include" });
+        const res = await fetch(`${API_BASE}/api/siwe/me`, {
+          credentials: "include",
+        });
+
+        if (!res.ok) {
+          console.error(
+            "SIWE: /me failed:",
+            res.status,
+            await res.text().catch(() => "")
+          );
+          setAuthStatus("unauthenticated");
+          return;
+        }
+
         const json = await res.json();
         setAuthStatus(json.address ? "authenticated" : "unauthenticated");
-      } catch {
+      } catch (err) {
+        console.error("SIWE: /me error:", err);
         setAuthStatus("unauthenticated");
       }
     })();
   }, []);
 
+  //
+  // 🔹 Build the SIWE adapter only once
+  //
   const siweAdapter = useMemo(
     () => createSiweAdapter(setAuthStatus),
-    []
+    [] // setAuthStatus is stable
   );
 
   return (
