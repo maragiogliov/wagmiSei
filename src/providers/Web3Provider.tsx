@@ -10,7 +10,7 @@ import {
 import { config } from "../wagmi";
 import { createSiweAdapter } from "../auth/siwe";
 import type { AuthStatus } from "../auth/siwe";
-import { authStatusContext } from "./authStatusContext"; // ✅ moved to separate file
+import { AuthStatusContext } from "./AuthStatusContext"; 
 
 const queryClient = new QueryClient();
 
@@ -67,7 +67,7 @@ const Web3Provider: React.FC<Props> = ({ children }) => {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <authStatusContext.Provider value={authStatus}>
+        <AuthStatusContext.Provider value={authStatus}>
           <RainbowKitAuthenticationProvider
             adapter={siweAdapter}
             status={authStatus}
@@ -76,7 +76,7 @@ const Web3Provider: React.FC<Props> = ({ children }) => {
               {children}
             </RainbowKitProvider>
           </RainbowKitAuthenticationProvider>
-        </authStatusContext.Provider>
+        </AuthStatusContext.Provider>
       </QueryClientProvider>
     </WagmiProvider>
   );
