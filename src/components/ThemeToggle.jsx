@@ -126,30 +126,27 @@ const readToken = (el, name) => {
   return (sEl.getPropertyValue(name).trim() || sRoot.getPropertyValue(name).trim() || "");
 };
 
-export default function ColorToggle({ targetId = "theme-root", storageKey = "isDarkTheme" }) {
+export default function ColorToggle({ storageKey = "isDarkTheme" }) {
   const [isDark, setIsDark] = useState(false);
   const [hovered, setHovered] = useState(false);
-
-  // Cache literal colors so we never re-reference variables
-  // { lightTargets: { "--brand-white": "#fff", ... }, darkTargets: { "--brand-white": "#000", ... } }
   const cacheRef = useRef(null);
 
   const ensureCache = (el) => {
     if (cacheRef.current) return cacheRef.current;
 
-    // Snapshot current (light) literal value for every LEFT key and RIGHT token
     const base = {};
     Object.entries(VAR_SWAP).forEach(([leftVar, rightToken]) => {
-      base[leftVar] = readToken(el, leftVar);
-      base[rightToken] = readToken(el, rightToken);
+      const left = readToken(el, leftVar);
+      const right = readToken(el, rightToken);
+      if (left) base[leftVar] = left;
+      if (right) base[rightToken] = right;
     });
 
-    // Build static literal targets
     const lightTargets = {};
     const darkTargets = {};
     Object.entries(VAR_SWAP).forEach(([leftVar, rightToken]) => {
-      lightTargets[leftVar] = base[leftVar];
-      darkTargets[leftVar] = base[rightToken];
+      if (base[leftVar]) lightTargets[leftVar] = base[leftVar];
+      if (base[rightToken]) darkTargets[leftVar] = base[rightToken];
     });
 
     cacheRef.current = { lightTargets, darkTargets };
@@ -163,7 +160,7 @@ export default function ColorToggle({ targetId = "theme-root", storageKey = "isD
   };
 
   const handleToggle = () => {
-    const el = document.getElementById(targetId) || document.documentElement;
+    const el = document.documentElement; // 👈 always <html>
     const { lightTargets, darkTargets } = ensureCache(el);
     const next = !isDark;
     applyTargets(el, next ? darkTargets : lightTargets);
@@ -173,35 +170,28 @@ export default function ColorToggle({ targetId = "theme-root", storageKey = "isD
     } catch {}
   };
 
-  // On mount: read saved preference (fallback to prefers-color-scheme), apply immediately
   useEffect(() => {
-    const el = document.getElementById(targetId) || document.documentElement;
+    const el = document.documentElement; // 👈 always <html>
     const cached = ensureCache(el);
 
     let initial = false;
     try {
       const saved = localStorage.getItem(storageKey);
       if (saved !== null) initial = JSON.parse(saved) === true;
-      else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      else if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
         initial = true;
       }
     } catch {}
 
     applyTargets(el, initial ? cached.darkTargets : cached.lightTargets);
     setIsDark(initial);
-  }, [storageKey, targetId]);
+  }, [storageKey]);
 
-  const buttonStyle = {
- backgroundColor: "transparent",
- border:"none",
-  };
+}
 
-  const iconStyle = {
-    color: "#fff",
-    width: "24px",
-    height: "24px",
-    transition: "transform .2s ease",
-  };
 
   return (
     <button
@@ -214,4 +204,4 @@ export default function ColorToggle({ targetId = "theme-root", storageKey = "isD
       {isDark ? <SunSVG style={iconStyle} /> : <MoonSVG style={iconStyle} />}
     </button>
   );
-}
+
