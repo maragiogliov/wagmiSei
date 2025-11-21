@@ -1,27 +1,44 @@
 # AMULET-DAPP
 
-Project Overview
+# Project Overview
 
 A decentralized application (DApp) built with React, TypeScript, and Web3 technologies, connecting to the Sei Testnet blockchain. The platform centers around longevity science, offering users advanced tools and services to enhance their health and wellness journey.
 
-Core Features
+## Core Features
 
-Longevity Science Concept: The app is dedicated to exploring and promoting longevity, providing users with innovative solutions and insights to extend healthspan and lifespan.
+### Longevity Science Concept  
+The app is dedicated to exploring and promoting longevity, providing users with innovative solutions and insights to extend healthspan and lifespan.
 
-AI Agent for Longevity Guidance: An intelligent AI-powered assistant that offers personalized advice, insights, and information related to longevity science, helping users make informed health decisions.
+### AI Agent for Longevity Guidance  
+An intelligent AI-powered assistant that offers personalized advice, insights, and information related to longevity science, helping users make informed health decisions.
 
-E-commerce Platform: A marketplace showcasing products designed to promote longevity. Users can browse, purchase, and manage longevity-focused products directly within the app.
+### E-commerce Platform  
+A marketplace showcasing products designed to promote longevity. Users can browse, purchase, and manage longevity-focused products directly within the app.
 
-Medical Services Integration:
+### Medical Services Integration
 
-- Online Doctor Consultations: Users can schedule and conduct virtual visits with doctors.
-- Medical Approvals: Receive approval for treatments or tests from licensed medical professionals within the platform.
-- Medical Data Uploads: Upload and manage medical test results such as blood tests, health reports, etc.
-- Token and Trading: The app currently features a "dummy token" called AMULET AI, which is already tradable on the Sei testnet. This token will soon be available on the mainnet, enabling real-world transactions and asset management.
+- **Online Doctor Consultations:** Users can schedule and conduct virtual visits with doctors.  
+- **Medical Approvals:** Receive approval for treatments or tests from licensed medical professionals within the platform.  
+- **Medical Data Uploads:** Upload and manage medical test results such as blood tests, health reports, etc.
 
-Blockchain Connectivity: All features operate seamlessly alongside the Sei blockchain (currently on testnet, with plans for mainnet deployment), ensuring security, transparency, and decentralization.
+### Token and Trading  
+The app currently features a *dummy token* called **AMULET AI**, which is already tradable on the Sei testnet. This token will soon be available on the mainnet, enabling real-world transactions and asset management.
 
-Identity & Asset Management: The platform leverages Reown for on-chain identity and asset management, enhancing user security and data control.
+### Blockchain Connectivity  
+All features operate seamlessly alongside the Sei blockchain (currently on testnet, with plans for mainnet deployment), ensuring security, transparency, and decentralization.
+
+### Identity & Asset Management  
+The platform leverages **Reown** for on-chain identity and asset management, enhancing user security and data control.
+
+### SIWE Authentication (Sign-In With Ethereum)  
+The project uses **SIWE** to provide secure, passwordless authentication through users’ crypto wallets. SIWE enables:
+
+- Secure login via wallet signature  
+- Session persistence with secure cookies  
+- Protection of authenticated routes  
+- Seamless integration with React, Wagmi, and modern Web3 UX  
+- A fully Web3-native onboarding experience  
+
 
 ## Project Structure
 
@@ -115,11 +132,254 @@ This setup allows the app to leverage Reown’s decentralized identity and asset
 - The app uses a minimal ERC20 ABI for token interactions, including functions like `name`, `symbol`, `decimals`, `balanceOf`, and `transfer`.
 - These constants are stored in `src/shared/constants.ts` for easy reuse across the codebase.
 
-## Features
+# 🪪 Sign-In With Ethereum (SIWE) Authentication
+
+This project implements **SIWE (Sign-In With Ethereum)** to authenticate users using their crypto wallet instead of traditional credentials.  
+Authentication is handled through an **EIP-4361 signed message**, verified server-side, and stored in a **secure session cookie**.
+
+## Why SIWE?
+
+- 🔐 Passwordless authentication  
+- 🦄 Integrates seamlessly with RainbowKit + Wagmi  
+- 🍪 Uses secure, HTTP-only cookies for sessions  
+- 🧱 Protects dApp routes  
+- ⚡ Works across page reloads
+
+---
+
+# ✨ Architecture Overview
+
+SIWE authentication consists of:
+
+| Layer | Responsibility |
+|-------|----------------|
+| **Frontend (React)** | Builds + signs EIP-4361 message, manages auth state, RainbowKit integration |
+| **Backend (Vercel Serverless)** | Generates nonce, verifies signatures, stores secure cookies |
+
+The frontend signs messages; the backend verifies them.
+
+---
+
+# 🏗 Backend (Vercel Serverless Functions)
+
+Backend code lives under:
+
+```
+/api/siwe/
+  - nonce.ts
+  - verify.ts
+  - me.ts
+  - logout.ts
+```
+
+All endpoints include proper CORS headers and use secure cookies (`HttpOnly`, `Secure`, `SameSite=None`).
+
+---
+
+## 1. `GET /api/siwe/nonce`
+
+Generates a secure SIWE nonce using the official SIWE helper:
+
+```ts
+import { generateNonce } from "siwe";
+
+const nonce = generateNonce();
+// Stores it in a cookie:
+document.cookie = "siwe-nonce=<nonce>; HttpOnly; Secure; SameSite=None";
+
+// Returns the nonce to the frontend.
+```
+
+## 2. POST /api/siwe/verify
+
+Payload:
+```json
+{
+  "message": "<prepared EIP-4361 message>",
+  "signature": "<wallet signature>"
+}
+```
+
+Verification steps:
+- Read `siwe-nonce` cookie
+- Construct `SiweMessage(message)`
+- Verify signature + nonce
+
+If valid → create session cookie:
+
+```ts
+// Example of setting session cookie:
+document.cookie = "siwe-session={\"address\":\"0x...\",\"chainId\":...}; HttpOnly; Secure; SameSite=None";
+```
+
+## 3. GET /api/siwe/me
+
+Restores existing session:
+
+**Authenticated:**
+```json
+{ "address": "0x1234..." }
+```
+
+**Not authenticated:**
+```json
+{ "address": null }
+```
+
+Used by the frontend on page load.
+
+## 4. POST /api/siwe/logout
+
+Clears authentication:
+
+```ts
+// Clear session cookie:
+document.cookie = "siwe-session=; Max-Age=0; HttpOnly; Secure; SameSite=None";
+```
+
+Session removed.
+
+---
+
+# 💻 Frontend (React + Wagmi + RainbowKit)
+
+Frontend SIWE files:
+
+```plaintext
+src/auth/siwe.ts
+src/providers/Web3Provider.tsx
+src/providers/AuthStatusContext.ts
+src/providers/useAmuletAuthStatus.ts
+```
+
+🔹 **src/auth/siwe.ts** — SIWE Adapter  
+Implements RainbowKit’s `createAuthenticationAdapter()`:
+
+- `getNonce()` → calls backend
+- `createMessage()` → builds SIWE message
+- `verify()` → POST `/verify`
+- `signOut()` → POST `/logout`
+
+All requests use:
+
+```ts
+credentials: "include"
+```
+
+🔹 **Web3Provider.tsx** — Global Web3 + SIWE Wrapper  
+Wraps the app with:
+
+- `WagmiProvider`
+- `RainbowKitProvider`
+- `RainbowKitAuthenticationProvider`
+- `AuthStatusContext`
+
+On load, it calls:
+
+```ts
+GET /api/siwe/me
+```
+
+to restore previous sessions.
+
+Maintains SIWE state:
+
+```plaintext
+"loading" | "unauthenticated" | "authenticated"
+```
+
+🔹 **AuthStatusContext.ts**  
+Simple global context:
+
+```ts
+export const AuthStatusContext = createContext<AuthStatus>("loading");
+```
+
+Stores SIWE authentication status across the app.
+
+🔹 **useAmuletAuthStatus.ts**  
+Small hook:
+
+```ts
+const status = useAmuletAuthStatus();
+```
+
+Used in components + guards to check whether the user is authenticated.
+
+---
+
+# 🔐 Route Protection (WalletGuard)
+
+Routes are only accessible when:
+
+- Wallet is connected
+- SIWE session is authenticated
+
+Otherwise users are redirected to `/auth`.
+
+---
+
+# 🔁 Full SIWE Flow Summary
+
+1. **Connect Wallet**  
+User selects wallet via RainbowKit.
+
+2. **Request Nonce**  
+Frontend sends `GET /api/siwe/nonce`  
+Nonce stored in secure cookie.
+
+3. **Build SIWE Message**  
+Created using:
+
+- domain
+- wallet address
+- chainId
+- URI
+- version
+- statement
+- nonce
+
+4. **Sign Message**  
+Wallet shows signature popup.
+
+5. **Verify Signature**  
+Frontend sends:
+
+```bash
+POST /api/siwe/verify
+```
+
+Backend verifies and sets session cookie.
+
+6. **App Unlocks**  
+Frontend updates state to:
+
+```plaintext
+"authenticated"
+```
+
+User can now access protected routes.
+
+---
+
+# 🎉 Final Result
+
+With SIWE fully implemented:
+
+- Users log in using their wallet
+- No passwords or email required
+- Full Web3-native authentication
+- Sessions persist via secure cookies
+- Works with Wagmi v2 + RainbowKit v2
+- Fully deployed and working on Vercel
+
+
+
+## Project Features
 
 - Modular React components for UI
 - Blockchain connectivity to Sei Testnet
-- Wallet integration via RainbowKit
+- Wallet integration via RainbowKit / SIWE
 - Token interaction capabilities
 - Organized pages for user activities like authentication, shopping, and order history
 - Static data management with JSON
