@@ -27,10 +27,6 @@ function LandingPage() {
     }
   };
 
-  const goToAuth = (nextMode) => {
-    setMode(nextMode);
-    navigate(`/auth?mode=${nextMode}`);
-  };
 
   return (
     <>

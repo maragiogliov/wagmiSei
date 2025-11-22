@@ -11,7 +11,6 @@ import { CartProvider } from './store/CartContext';
 import './App.css';
 import OrderHistory from './pages/OrderHistory/OrderHistory';
 import Visits from './pages/Visits/Visits';
-import AuthPageWeb3 from './pages/Auth/AuthPageWeb3';
 import Dashboard from './components/Dashboard';
 import WalletGuard from './components/WalletGuard';   
 
@@ -23,7 +22,6 @@ function App() {
           <Routes>
             {/* Public routes */}
             <Route path="/" element={<LandingPage />} />
-            <Route path="/auth" element={<AuthPageWeb3 />} />
 
             {/* Protected routes → only visible when wallet is connected */}
             <Route element={<WalletGuard />}>
