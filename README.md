@@ -317,6 +317,66 @@ Routes are only accessible when:
 
 Otherwise users are redirected to `/auth`.
 
+
+
+---
+
+🛰️ Blockchain RPC Access (via Serverless Proxy)
+
+To protect our private Sei RPC endpoint and avoid exposing it directly to the frontend, the DApp connects to the blockchain through a dedicated serverless RPC proxy deployed on Vercel:
+
+https://sei-rpc-proxy.vercel.app/api/rpc
+
+Why a Proxy?
+
+Hides the real RPC URL
+
+Prevents exposing API keys or private nodes
+
+Adds a security layer between users and the blockchain
+
+Avoids rate-limit or misuse of upstream RPC endpoints
+
+Allows future middleware such as caching, method filtering, or request logging
+
+How It Works
+
+All blockchain calls go through a tiny backend service located in:
+
+/api/rpc.ts  (in the sei-rpc-proxy project)
+
+
+This serverless function:
+
+Receives JSON-RPC requests from the frontend
+
+Forwards them to the upstream Sei RPC defined in the server’s environment variable (SEI_RPC_URL)
+
+Returns the response back to the DApp
+
+The actual RPC used is not exposed to the browser.
+
+Frontend Configuration (Wagmi)
+
+In src/wagmi.ts, the DApp is configured to use the proxy instead of a direct blockchain URL:
+
+export const config = getDefaultConfig({
+  appName: 'Amulet AI',
+  projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID!,
+  chains: [seiTestnet],
+  transports: {
+    [seiTestnet.id]: http('https://sei-rpc-proxy.vercel.app/api/rpc'),
+  },
+});
+
+Backend Environment Variable
+
+On the RPC proxy server (Vercel project), you must define:
+
+SEI_RPC_URL=https://evm-rpc-testnet.sei-apis.com
+
+
+This variable is never exposed to the client.
 ---
 
 # 🔁 Full SIWE Flow Summary

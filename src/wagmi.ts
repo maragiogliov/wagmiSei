@@ -14,7 +14,7 @@ export const seiTestnet: Chain = {
   },
   rpcUrls: {
     default: {
-      http: ['https://evm-rpc-testnet.sei-apis.com'],
+      http: ['https://sei-rpc-proxy.vercel.app/api/rpc'], // using proxy
     },
   },
   blockExplorers: {
@@ -24,8 +24,6 @@ export const seiTestnet: Chain = {
     },
   },
   iconBackground: '#050816',
-  // Optional: put a real icon in /public
-  // iconUrl: '/sei-logo.svg',
 } as const;
 
 // 2) Use RainbowKit’s helper to create the wagmi config
@@ -34,6 +32,7 @@ export const config = getDefaultConfig({
   projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID!,
   chains: [seiTestnet],
   transports: {
-    [seiTestnet.id]: http(),
+    // 👇 IMPORTANT: make wagmi use the proxy explicitly
+    [seiTestnet.id]: http('https://sei-rpc-proxy.vercel.app/api/rpc'),
   },
 });
