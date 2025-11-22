@@ -24,7 +24,6 @@ function App() {
             <Route path="/" element={<LandingPage />} />
 
             {/* Protected routes → only visible when wallet is connected */}
-            <Route element={<WalletGuard />}>
               <Route path="/dashboard" element={<Dashboard />} />
 
               {/* Agent layout wraps main app pages */}
@@ -37,7 +36,11 @@ function App() {
                 <Route path="/orderhistory" element={<OrderHistory />} />
                 <Route path="/visits" element={<Visits />} />
               </Route>
+
+
+            <Route element={<WalletGuard />}>
             </Route>
+          
 
             {/* Back-compat redirects (these will still end up on protected routes) */}
             <Route path="/agent/shop" element={<Navigate to="/shop" replace />} />

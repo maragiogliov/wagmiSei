@@ -11,46 +11,46 @@ function App() {
           <span className="brand-badge">Sei Testnet</span>
         </div>
 
- <ConnectButton.Custom>
-  {({
-    account,
-    chain,
-    openChainModal,
-    openAccountModal,
-    openConnectModal,
-    mounted,
-  }) => {
-    const ready = mounted;
-    const connected = ready && account && chain;
+        <ConnectButton.Custom>
+          {({
+            account,
+            chain,
+            openChainModal,
+            openAccountModal,
+            openConnectModal,
+            mounted,
+          }) => {
+            const ready = mounted;
+            const connected = ready && account && chain;
 
-    if (!connected) {
-      return (
-        <button className="amulet-connect" onClick={openConnectModal}>
-          🔮 Connect to Amulet
-        </button>
-      );
-    }
+            if (!connected) {
+              return (
+                <button className="amulet-connect" onClick={openConnectModal}>
+                  🔮 Connect to Amulet
+                </button>
+              );
+            }
 
-    if (chain.unsupported) {
-      return (
-        <button className="amulet-warning" onClick={openChainModal}>
-          Wrong Network – Switch to Sei
-        </button>
-      );
-    }
+            if (chain.unsupported) {
+              return (
+                <button className="amulet-warning" onClick={openChainModal}>
+                  Wrong Network – Switch to Sei
+                </button>
+              );
+            }
 
-    return (
-      <div className="amulet-connected">
-        <button onClick={openAccountModal}>
-          {account.displayName}
-        </button>
-        <button onClick={openChainModal}>
-          {chain.name}
-        </button>
-      </div>
-    );
-  }}
-</ConnectButton.Custom>
+            return (
+              <div className="amulet-connected">
+                <button onClick={openAccountModal}>
+                  {account.displayName}
+                </button>
+                <button onClick={openChainModal}>
+                  {chain.name}
+                </button>
+              </div>
+            );
+          }}
+        </ConnectButton.Custom>
 
       </header>
 
