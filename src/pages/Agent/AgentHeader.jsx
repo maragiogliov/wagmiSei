@@ -111,9 +111,7 @@ export default function AgentHeader({ placeholder = "LONGEVITY SEARCH" }) {
               <img src="/assets/cartblue.svg" alt="" className={styles.cartIcon} />
             </button>
 
-<div className="connectWrapper">
-  <ConnectButton />
-</div>
+
             
           </div>
         </section>

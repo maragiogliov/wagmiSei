@@ -2,6 +2,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import styles from "./AgentSidebar.module.css";
 import ThemeToggle from "../../components/ThemeToggle";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
  
 const isDesktop = () => window.matchMedia("(min-width: 769px)").matches;
 
@@ -227,6 +228,9 @@ useEffect(() => {
           <div className={styles.sidebarFooter}>
             
                   <ThemeToggle/>
+                  <div className="connectWrapper">
+  <ConnectButton />
+</div>
           </div>
         </div>
       </div>
