@@ -24,6 +24,9 @@ function App() {
             <Route path="/" element={<LandingPage />} />
 
             {/* Protected routes → only visible when wallet is connected */}
+
+
+            <Route element={<WalletGuard />}>
               <Route path="/dashboard" element={<Dashboard />} />
 
               {/* Agent layout wraps main app pages */}
@@ -38,7 +41,6 @@ function App() {
               </Route>
 
 
-            <Route element={<WalletGuard />}>
             </Route>
           
 
