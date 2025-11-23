@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   
+  
   background-color: var(--brand-white);
   width: 100%;
 }
@@ -282,10 +283,6 @@ background: radial-gradient(circle at top left,
 
 @media (max-width: 768px) {
 
-.messagesList {
-
-  width: 90vw
-}
 
 .bodyCopyCategory{
 display: none;
@@ -302,7 +299,91 @@ display: none;
   width: 90%;
 
 }
-.frame2{
-  width: 291px;
+
 }
+
+.chatColumn {
+  flex: 1;
+  min-height: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--brand-white);
+  width: 100%;
+}
+
+/* scroll container stays full width → scrollbar on far right */
+.messagesList {
+  flex: 1;
+  min-height: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 1rem;
+  scrollbar-gutter: stable;
+  width: 100%;
+}
+
+/* inner content gets constrained */
+.messagesInner {
+  width: 100%;
+  max-width: 780px;    /* 👈 tweak this to control chat width */
+  margin: 0 auto;      /* center it */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Composer also constrained to same width */
+.composer {
+  min-height: 10vh;
+  position: sticky;
+  bottom: 1rem;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 12px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  background: var(--mapped-surface-primary);
+
+  width: 100%;
+  max-width: 780px;    /* 👈 same as messagesInner */
+  margin: 0 auto;      /* center it */
+
+  background: radial-gradient(circle at top left,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    rgba(255, 255, 255, 0) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 2px 2px rgba(165, 166, 166, 0.4);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  border-radius: 12px;
+  text-wrap: none;
+}
+
+@media (max-width: 768px) {
+  /* ❌ delete this bit:
+  .messagesList {
+    width: 90vw;
+  }
+  */
+
+  .composer {
+    width: 90%;
+    max-width: 100%;
+  }
+
+  .bodyCopyCategory {
+    display: none;
+  }
+  .bodyCopyDescription {
+    margin-top: 0px;
+    font-size: 13px;
+  }
 }
