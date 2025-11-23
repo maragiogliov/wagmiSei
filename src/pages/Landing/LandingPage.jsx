@@ -58,10 +58,10 @@ function LandingPage() {
                 className={styles.subtitle}
                 interval={3}
                 phrases={[
-                  'Order treatments directly on the agent.',
-                  'Personalize your longevity plan.',
-                  'Shop expert-curated supplements.',
-                  'Track visits & orders in one place.',
+                  'Order treatments directly on the agent',
+                  'Personalize your longevity plan',
+                  'Shop expert-curated supplements',
+                  'Track visits & orders in one place',
                 ]}
               />
             </div>
@@ -177,8 +177,8 @@ function LandingPage() {
           </div>
         </span>
 
-        <span className={`${styles.corner} ${styles.bottomLeft}`}>.</span>
-        <span className={`${styles.corner} ${styles.bottomRight}`}>.</span>
+        <span className={`${styles.corner} ${styles.bottomLeft}`}></span>
+        <span className={`${styles.corner} ${styles.bottomRight}`}></span>
       </div>
     </>
   );
