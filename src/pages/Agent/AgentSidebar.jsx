@@ -70,13 +70,7 @@ useEffect(() => {
   return (
     <>
       {/* Backdrop (mobile): click/tap to close */}
-      {drawerOpen && !isDesktop() && (
-        <div
-          className={styles.backdrop}
-          role="presentation"
-          onClick={() => setDrawerOpen(false)}
-        />
-      )}
+
 
       {/* Sidebar panel */}
       <div
