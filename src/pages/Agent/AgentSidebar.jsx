@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import styles from "./AgentSidebar.module.css";
 import ThemeToggle from "../../components/ThemeToggle";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
- 
+
 const isDesktop = () => window.matchMedia("(min-width: 769px)").matches;
 
 export default function AgentSidebar({ onNavigate }) {
@@ -25,30 +25,29 @@ export default function AgentSidebar({ onNavigate }) {
   }, [drawerOpen]);
 
   // Close when clicking/touching anywhere outside the sidebar (mobile only)
-// replace your "Close when clicking/touching anywhere outside..." effect with this
-useEffect(() => {
-  if (!drawerOpen || isDesktop()) return;
+  useEffect(() => {
+    if (!drawerOpen || isDesktop()) return;
 
-  const handlePointerDown = (e) => {
-    const el = panelRef.current;
-    if (!el) return;
+    const handlePointerDown = (e) => {
+      const el = panelRef.current;
+      if (!el) return;
 
-    // Use composedPath for reliability across shadow roots/portals
-    const path = typeof e.composedPath === "function" ? e.composedPath() : [];
-    const clickedInside = path.length ? path.includes(el) : el.contains(e.target);
+      const path = typeof e.composedPath === "function" ? e.composedPath() : [];
+      const clickedInside = path.length
+        ? path.includes(el)
+        : el.contains(e.target);
 
-    if (!clickedInside) {
-      setDrawerOpen(false);
-    }
-  };
+      if (!clickedInside) {
+        setDrawerOpen(false);
+      }
+    };
 
-  // capture phase so inside clicks don't need to stopPropagation
-  document.addEventListener("pointerdown", handlePointerDown, true);
-  return () => {
-    document.removeEventListener("pointerdown", handlePointerDown, true);
-  };
-}, [drawerOpen]);
-
+    // capture phase so inside clicks don't need to stopPropagation
+    document.addEventListener("pointerdown", handlePointerDown, true);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown, true);
+    };
+  }, [drawerOpen]);
 
   const toggleLogo = () => {
     if (isDesktop()) {
@@ -69,15 +68,13 @@ useEffect(() => {
 
   return (
     <>
-      {/* Backdrop (mobile): click/tap to close */}
-
+      {/* Backdrop (mobile): purely visual, logic handled by document pointerdown */}
+      {drawerOpen && !isDesktop() && (
+        <div className={styles.drawerBackdrop} role="presentation" />
+      )}
 
       {/* Sidebar panel */}
-      <div
-        className={styles.sidebarInner}
-        ref={panelRef}
-      
-      >
+      <div className={styles.sidebarInner} ref={panelRef}>
         <div className={styles.logoBar}>
           <button
             className={styles.logoButton}
@@ -85,7 +82,11 @@ useEffect(() => {
             aria-label="Toggle sidebar"
             title="Toggle sidebar"
           >
-            <img src="/assets/infinite-ouline-blue.svg" alt="" className={styles.logoIcon} />
+            <img
+              src="/assets/infinite-ouline-blue.svg"
+              alt=""
+              className={styles.logoIcon}
+            />
           </button>
 
           <button
@@ -94,16 +95,19 @@ useEffect(() => {
             aria-label="Toggle sidebar"
             title="Toggle sidebar"
           >
-            <img src="/assets/right-bar.svg" alt="" className={styles.rightBarButton} />
+            <img
+              src="/assets/right-bar.svg"
+              alt=""
+              className={styles.rightBarButton}
+            />
           </button>
         </div>
 
         {/* Top CTA */}
-     <button className={styles.primaryButton} onClick={onNewChat}>
-  <img className={styles.plus} src="/assets/plus.svg" alt="" />
-  <span className={styles.primaryButtonLabel}>New Chat</span>
-</button>
-
+        <button className={styles.primaryButton} onClick={onNewChat}>
+          <img className={styles.plus} src="/assets/plus.svg" alt="" />
+          <span className={styles.primaryButtonLabel}>New Chat</span>
+        </button>
 
         {/* Scrollable area (Recent Chats) */}
         <div className={styles.scrollArea}>
@@ -124,13 +128,23 @@ useEffect(() => {
               </div>
             </div>
 
-            <div className={styles.chatCard} onClick={onNewChat} role="button" tabIndex={0}>
+            <div
+              className={styles.chatCard}
+              onClick={onNewChat}
+              role="button"
+              tabIndex={0}
+            >
               <div className={styles.chatTextBlock}>
                 <div className={styles.chatTitle}>Supplements for sleep</div>
               </div>
             </div>
 
-            <div className={styles.chatCard} onClick={onNewChat} role="button" tabIndex={0}>
+            <div
+              className={styles.chatCard}
+              onClick={onNewChat}
+              role="button"
+              tabIndex={0}
+            >
               <div className={styles.chatTextBlock}>
                 <div className={styles.chatTitle}>Workout plan – week 4</div>
               </div>
@@ -141,7 +155,11 @@ useEffect(() => {
         {/* Bottom dock */}
         <div className={styles.bottomDock}>
           <div className={styles.sectionTitleRow}>
-            <img className={styles.icon16} src="/assets/sparkles-outline.svg" alt="" />
+            <img
+              className={styles.icon16}
+              src="/assets/sparkles-outline.svg"
+              alt=""
+            />
             <div className={styles.textWrapper}>Quick Actions</div>
           </div>
 
@@ -163,10 +181,16 @@ useEffect(() => {
               aria-label="Open Shop Catalog"
               title="Shop Supplements"
             >
-              <img className={styles.icon24} src="/assets/shopSupplementsIcon.svg" alt="" />
+              <img
+                className={styles.icon24}
+                src="/assets/shopSupplementsIcon.svg"
+                alt=""
+              />
               <div className={styles.frame}>
                 <div className={styles.textWrapper2}>Shop Supplements</div>
-                <div className={styles.textWrapper3}>Longevity-enhaced products</div>
+                <div className={styles.textWrapper3}>
+                  Longevity-enhaced products
+                </div>
               </div>
             </div>
 
@@ -187,10 +211,16 @@ useEffect(() => {
               aria-label="Open Order History"
               title="Order History"
             >
-              <img className={styles.icon24} src="/assets/orderHistoryIcon.svg" alt="" />
+              <img
+                className={styles.icon24}
+                src="/assets/orderHistoryIcon.svg"
+                alt=""
+              />
               <div className={styles.frame}>
                 <div className={styles.shopSupplements}>Order History</div>
-                <div className={styles.longevityEnhaced}>Check your orders</div>
+                <div className={styles.longevityEnhaced}>
+                  Check your orders
+                </div>
               </div>
             </div>
 
@@ -211,20 +241,25 @@ useEffect(() => {
               aria-label="Open Visits"
               title="View Visits"
             >
-              <img className={styles.icon24} src="/assets/viewVisitsIcon.svg" alt="" />
+              <img
+                className={styles.icon24}
+                src="/assets/viewVisitsIcon.svg"
+                alt=""
+              />
               <div className={styles.frame}>
                 <div className={styles.shopSupplements2}>View Visits</div>
-                <div className={styles.longevityEnhaced2}>Track medical history</div>
+                <div className={styles.longevityEnhaced2}>
+                  Track medical history
+                </div>
               </div>
             </div>
           </div>
 
           <div className={styles.sidebarFooter}>
-            
-                  <ThemeToggle/>
-                  <div className={styles.connectWrapper}>
-                    <ConnectButton />
-                  </div>
+            <ThemeToggle />
+            <div className={styles.connectWrapper}>
+              <ConnectButton />
+            </div>
           </div>
         </div>
       </div>

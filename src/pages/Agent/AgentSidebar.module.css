@@ -23,41 +23,49 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
- 
 }
 
-.logoButton, .logoButtonBar {
+.logoButton,
+.logoButtonBar {
   all: unset;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  
-  border-radius:var(--alias-border-width-lg);
+  border-radius: var(--alias-border-width-lg);
   cursor: pointer;
   position: relative; /* for tooltip */
 }
 
-.rightBarButton{
-  width: 16px; height: 16px;
+.rightBarButton {
+  width: 16px;
+  height: 16px;
   border: none;
   background-color: transparent;
 }
 
-.logoButton:hover { background: var(--brand-blue-lighter); }
-.logoButtonBar:hover { background: var(--brand-blue-lighter); }
-
-
-.logoButton:focus-visible { outline: 2px solid var(--mapped-border-and-dividers-hightlight); outline-offset: 2px; }
-.logoIcon { width: 24px; height: 24px; display: block; }
-
-
-.scrollArea {
-  flex: 1; 
-  min-height: 0; 
-  overflow: auto; 
-  gap: 12px; 
+.logoButton:hover {
+  background: var(--brand-blue-lighter);
+}
+.logoButtonBar:hover {
+  background: var(--brand-blue-lighter);
 }
 
+.logoButton:focus-visible {
+  outline: 2px solid var(--mapped-border-and-dividers-hightlight);
+  outline-offset: 2px;
+}
+.logoIcon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.scrollArea {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  gap: 12px;
+}
 
 .bottomDock {
   border-top: 1px solid var(--mapped-border-and-dividers-primary);
@@ -72,15 +80,14 @@
   margin: 8px 0 0;
   padding: 0;
   display: grid;
-  gap: 4px;                 /* tight spacing */
+  gap: 4px; /* tight spacing */
 }
 
 /* Chat cards – same footprint as quick actions */
 .chatCards {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .chatCard {
@@ -117,19 +124,21 @@
   text-overflow: ellipsis;
 }
 
-
-
-
-
-.icon16 { width:16px; height:16px; }
-.icon24 { width:16px; height:16px; }
+.icon16 {
+  width: 16px;
+  height: 16px;
+}
+.icon24 {
+  width: 16px;
+  height: 16px;
+}
 
 .sectionTitleRow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-      margin-bottom: 0.4rem;
-      height: fit-content;
+  margin-bottom: 0.4rem;
+  height: fit-content;
 }
 
 .textWrapper {
@@ -161,15 +170,21 @@
   letter-spacing: var(--body-md-bold-letter-spacing);
   cursor: pointer;
 }
-.plus { width:17px; height:17px; }
+.plus {
+  width: 17px;
+  height: 17px;
+}
 
-.cardGroup { display: grid; gap: 12px; }
+.cardGroup {
+  display: grid;
+  gap: 12px;
+}
 
 .buttonCardTeal,
 .buttonCardTeal2,
 .buttonCardTeal3,
 .frameWrapper {
- display: flex;
+  display: flex;
   align-items: center;
   gap: 12px;
   padding: 0 12px;
@@ -197,8 +212,6 @@
   border-color: var(--brand-blue-light);
 }
 
-
-
 /* Hover: slightly enlarge */
 .buttonCardTeal:hover,
 .buttonCardTeal2:hover,
@@ -215,14 +228,43 @@
   transform: scale(0.98);
 }
 
-.frame { display:inline-flex; flex-direction:column; align-items:flex-start; padding:12px 6px; }
-.textWrapper2 { font: 400 14px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif; color: var(--brand-green-darker); }
-.textWrapper3 { font: 400 11px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif; color: var(--brand-green-dark); white-space: nowrap; }
-.shopSupplements  { font: 400 14px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif; color: var(--brand-purple-darker); }
-.longevityEnhaced { font: 400 11px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif; color: var(--brand-purple-dark); white-space: nowrap; }
-.shopSupplements2 { font: 400 14px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif; color: var(--brand-blue-darker); }
-.longevityEnhaced2{ font: 400 11px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif; color: var(--brand-blue-dark); white-space: nowrap; }
-.shopSupplements3 { font: 700 12px/20px "Satoshi-Bold", Helvetica, Arial, sans-serif; color: var(--brand-blue-darker); }
+.frame {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 6px;
+}
+.textWrapper2 {
+  font: 400 14px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif;
+  color: var(--brand-green-darker);
+}
+.textWrapper3 {
+  font: 400 11px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif;
+  color: var(--brand-green-dark);
+  white-space: nowrap;
+}
+.shopSupplements {
+  font: 400 14px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif;
+  color: var(--brand-purple-darker);
+}
+.longevityEnhaced {
+  font: 400 11px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif;
+  color: var(--brand-purple-dark);
+  white-space: nowrap;
+}
+.shopSupplements2 {
+  font: 400 14px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif;
+  color: var(--brand-blue-darker);
+}
+.longevityEnhaced2 {
+  font: 400 11px/20px "Satoshi-Regular", Helvetica, Arial, sans-serif;
+  color: var(--brand-blue-dark);
+  white-space: nowrap;
+}
+.shopSupplements3 {
+  font: 700 12px/20px "Satoshi-Bold", Helvetica, Arial, sans-serif;
+  color: var(--brand-blue-darker);
+}
 
 .sidebarFooter {
   margin-top: 1rem;
@@ -231,20 +273,28 @@
   justify-content: space-between;
   border-top: 1px solid var(--mapped-border-and-dividers-primary);
   padding-top: 1rem;
-
 }
-.settingsRow { display:inline-flex; align-items:center; gap:8px; }
-.moon { width:16px; height:16px; }
+.settingsRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.moon {
+  width: 16px;
+  height: 16px;
+}
 
-
+/* Desktop collapsed behavior */
 @media (min-width: 769px) {
   /* Hide chat area when collapsed, but keep New Chat button */
-  :global(body.sidebar-collapsed) :local(.sidebarInner .scrollArea) {
+  :global(body.sidebar-collapsed)
+    :local(.sidebarInner .scrollArea) {
     display: none;
   }
 
   /* Keep bottomDock visible, hide its title in collapsed */
-  :global(body.sidebar-collapsed) :local(.bottomDock .sectionTitleRow) {
+  :global(body.sidebar-collapsed)
+    :local(.bottomDock .sectionTitleRow) {
     display: none;
   }
 
@@ -253,21 +303,25 @@
   }
 
   /* Keep the original flow/positions (full-width rows, same gap) */
-  :global(body.sidebar-collapsed) :local(.bottomDock .cardGroup) {
+  :global(body.sidebar-collapsed)
+    :local(.bottomDock .cardGroup) {
     display: grid;
     gap: 12px;
-    justify-content:center;
+    justify-content: center;
   }
 
   /* Keep original card footprint (full width), just hide text */
-  :global(body.sidebar-collapsed) :local(.bottomDock .buttonCardTeal),
-  :global(body.sidebar-collapsed) :local(.bottomDock .buttonCardTeal2),
-  :global(body.sidebar-collapsed) :local(.bottomDock .buttonCardTeal3) {
+  :global(body.sidebar-collapsed)
+    :local(.bottomDock .buttonCardTeal),
+  :global(body.sidebar-collapsed)
+    :local(.bottomDock .buttonCardTeal2),
+  :global(body.sidebar-collapsed)
+    :local(.bottomDock .buttonCardTeal3) {
     width: 100%;
-    height: 44px;              /* compact row height */
-    padding: 0 12px;           /* same left padding → icon stays in place */
+    height: 44px; /* compact row height */
+    padding: 0 12px; /* same left padding → icon stays in place */
     border-radius: var(--alias-border-radius-md);
-    background: transparent;   /* optional: lighter look when collapsed */
+    background: transparent; /* optional: lighter look when collapsed */
     border-color: transparent; /* optional: remove borders when collapsed */
     display: flex;
     align-items: center;
@@ -275,80 +329,79 @@
   }
 
   /* Keep icon size unchanged to preserve alignment */
-  :global(body.sidebar-collapsed) :local(.bottomDock .icon24) {
+  :global(body.sidebar-collapsed)
+    :local(.bottomDock .icon24) {
     width: 24px;
     height: 24px;
   }
-    :global(body.sidebar-collapsed) :local(.logoBar) {
-justify-content: center;
+
+  :global(body.sidebar-collapsed) :local(.logoBar) {
+    justify-content: center;
   }
 
   /* Hide the text stack only */
-  :global(body.sidebar-collapsed) :local(.bottomDock .frame) {
+  :global(body.sidebar-collapsed)
+    :local(.bottomDock .frame) {
     display: none;
   }
-  :global(body.sidebar-collapsed) :local(.connectWrapper){
+  :global(body.sidebar-collapsed)
+    :local(.connectWrapper) {
     display: none;
   }
 
   /* Hide the text stack only */
-  :global(body.sidebar-collapsed) :local(.logoButtonBar) {
+  :global(body.sidebar-collapsed)
+    :local(.logoButtonBar) {
     display: none;
   }
 
-  /* On hover (expanded), just reveal text + restore visuals — no position shift */
-  :global(body.sidebar-collapsed) :local(.sidebar:hover .bottomDock .sectionTitleRow) {
-    display: inline-flex;
-  }
-  :global(body.sidebar-collapsed) :local(.sidebar:hover .bottomDock .buttonCardTeal),
-  :global(body.sidebar-collapsed) :local(.sidebar:hover .bottomDock .buttonCardTeal2),
-  :global(body.sidebar-collapsed) :local(.sidebar:hover .bottomDock .buttonCardTeal3) {
-    background-color: var(--brand-blue-lighter);
-    border-color: var(--brand-blue-light);
-  }
-  :global(body.sidebar-collapsed) :local(.sidebar:hover .bottomDock .frame) {
-    display: inline-flex;
-  }
-    :global(body.sidebar-collapsed) :local(.bottomDock) {
+  :global(body.sidebar-collapsed)
+    :local(.bottomDock) {
     margin-top: auto;
   }
-    :global(body.sidebar-collapsed) :local(.sidebarFooter .textWrapper),
-    :global(body.sidebar-collapsed) :local(.sidebarFooter .moon) {
+  :global(body.sidebar-collapsed)
+    :local(.sidebarFooter .textWrapper),
+  :global(body.sidebar-collapsed)
+    :local(.sidebarFooter .moon) {
     display: none;
   }
-     :global(body.sidebar-collapsed) :local(.sidebarFooter .icon16) {
+  :global(body.sidebar-collapsed)
+    :local(.sidebarFooter .icon16) {
     width: 20px;
     height: 20px;
   }
-  :global(body.sidebar-collapsed) :local(.sidebarFooter) {
-   justify-content: center;
+  :global(body.sidebar-collapsed)
+    :local(.sidebarFooter) {
+    justify-content: center;
   }
+
   /* New Chat: turn into square icon button when collapsed */
-  :global(body.sidebar-collapsed) :local(.primaryButton) {
+  :global(body.sidebar-collapsed)
+    :local(.primaryButton) {
     width: 44px;
     height: 44px;
     padding: 0;
-    border-radius: var(--alias-border-radius-md); /* or same as .logoButton */
+    border-radius: var(--alias-border-radius-md);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    align-self: center; /* optional: centers it in the column */
+    align-self: center;
   }
 
   /* Hide the "New Chat" text in collapsed state */
-  :global(body.sidebar-collapsed) :local(.primaryButtonLabel) {
+  :global(body.sidebar-collapsed)
+    :local(.primaryButtonLabel) {
     display: none;
   }
 
   /* Make sure the plus is centered nicely */
-  :global(body.sidebar-collapsed) :local(.primaryButton .plus) {
+  :global(body.sidebar-collapsed)
+    :local(.primaryButton .plus) {
     margin: 0;
   }
-
-
 }
 
-
+/* Mobile layout */
 @media (max-width: 768px) {
   .sidebarInner {
     height: 100%;
@@ -376,11 +429,10 @@ justify-content: center;
     display: flex;
     flex-direction: column;
     min-height: 0;
-    overflow-y: auto;         /* ONLY this scrolls */
+    overflow-y: auto; /* ONLY this scrolls */
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     gap: 12px;
-
   }
 
   .bottomDock {
@@ -394,16 +446,18 @@ justify-content: center;
     gap: 0px;
   }
   .frame {
-    display:none;
+    display: none;
   }
 
-  .cardGroup{
+  .cardGroup {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
 
-  .buttonCardTeal, .buttonCardTeal2, .buttonCardTeal3 {
+  .buttonCardTeal,
+  .buttonCardTeal2,
+  .buttonCardTeal3 {
     width: 33%;
     padding: 0.8rem;
     display: flex;
@@ -412,16 +466,11 @@ justify-content: center;
     justify-content: center;
   }
 
-  .icon24{
+  .icon24 {
     width: 24px;
     height: 24px;
   }
-
-  
 }
-
-
-
 
 /* Ensure sidebar sits above backdrop on mobile */
 @media (max-width: 768px) {
@@ -430,25 +479,24 @@ justify-content: center;
     z-index: 2147483647;
   }
 }
+
+/* Drawer backdrop (mobile) */
 .drawerBackdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.25);
+  background: rgba(0, 0, 0, 0.25);
   opacity: 0;
-  pointer-events: none;      /* <-- key: do not intercept clicks */
-  transition: opacity .2s ease;
-  z-index: 2147483645;       /* below sidebar's 2147483647 */
+  pointer-events: none; /* do not intercept clicks; let document listener get events */
+  transition: opacity 0.2s ease;
+  z-index: 2147483645; /* below sidebar's 2147483647 */
 }
 
-/* Only show it when the sidebar is open (you already toggle body.drawer-open) */
+/* Only show it when the sidebar is open (body.drawer-open) */
 :global(body.drawer-open) :local(.drawerBackdrop) {
   opacity: 1;
-  pointer-events: none;      /* keep none so document listener/backdrop get events */
+  pointer-events: none; /* still none -> clicks go through to document */
 }
 
 .connectWrapper button {
-
   border-radius: var(--alias-border-width-lg) !important;
-
 }
-
