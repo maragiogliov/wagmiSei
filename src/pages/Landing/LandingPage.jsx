@@ -160,7 +160,9 @@ function LandingPage() {
 
         <span className={`${styles.corner} ${styles.topRight}`}>
           <div className={styles.tabs} role="tablist" aria-label="Wallet">
-            <ConnectButton />
+           <div className= "connectWrapper ">
+  <ConnectButton />
+</div>
           </div>
         </span>
 
