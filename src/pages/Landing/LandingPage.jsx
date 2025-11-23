@@ -51,7 +51,7 @@ function LandingPage() {
           overflow: 'hidden',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}
       >
         <GhostBackground />
@@ -65,10 +65,10 @@ function LandingPage() {
                 className={styles.subtitle}
                 interval={3}
                 phrases={[
-                  "Order treatments directly on the agent.",
-                  "Personalize your longevity plan.",
-                  "Shop expert-curated supplements.",
-                  "Track visits & orders in one place."
+                  'Order treatments directly on the agent.',
+                  'Personalize your longevity plan.',
+                  'Shop expert-curated supplements.',
+                  'Track visits & orders in one place.',
                 ]}
               />
             </div>
@@ -94,26 +94,33 @@ function LandingPage() {
                   />
                 </div>
 
-                {/* 🔥 Conditional button */}
-                {isConnected ? (
-                  <button
-                    className={styles.buttonIcon}
-                    onClick={sendFromLanding}
-                    aria-label="Send"
-                  >
-                    <img alt="Send" className={styles.send} src="/assets/send.svg" />
-                  </button>
-                ) : (
-                  <button
-                    className={styles.buttonIcon}
-                    onClick={() => openConnectModal?.()}
-                    aria-label="Connect Wallet"
-                  >
-                    <span className={styles.connectLabel}>Connect</span>
-                  </button>
-                )}
+             <button
+  className={`${styles.buttonIcon} ${!isConnected ? styles.disabledButton : ''}`}
+  onClick={() => {
+    if (!isConnected) {
+      openConnectModal?.();  // if disconnected, open wallet modal
+      return;
+    }
+    sendFromLanding();
+  }}
+  aria-label="Send"
+  disabled={!isConnected}
+>
+  <img alt="Send" className={styles.send} src="/assets/send.svg" />
+</button>
               </div>
+
             </div>
+              {/* Mobile-only ConnectButton under the input */}
+              <div
+                className={`${styles.connectWrapper} ${styles.mobileOnly}`}
+              >
+                <ConnectButton
+                  accountStatus="full"
+                  chainStatus="full"
+                  showBalance={true}
+                />
+              </div>
 
             <div className={styles.actionsContainer}>
               <div className={`${styles.actionCard} ${styles.orderHistory}`}>
@@ -155,14 +162,25 @@ function LandingPage() {
       {/* Four corner words */}
       <div className={styles.cornerWords}>
         <span className={`${styles.corner} ${styles.topLeft}`}>
-          <img src="./assets/infinite-ouline-blue.svg" alt="Amulet Logo" className={styles.logo} />
+          <img
+            src="./assets/infinite-ouline-blue.svg"
+            alt="Amulet Logo"
+            className={styles.logo}
+          />
         </span>
 
         <span className={`${styles.corner} ${styles.topRight}`}>
-          <div className={styles.tabs} role="tablist" aria-label="Wallet">
-           <div className= "connectWrapper ">
-  <ConnectButton />
-</div>
+          {/* Desktop-only ConnectButton in top-right corner */}
+          <div
+            className={`${styles.tabs} ${styles.desktopOnly}`}
+            role="tablist"
+            aria-label="Wallet"
+          >
+            <ConnectButton
+              accountStatus="full"
+              chainStatus="full"
+              showBalance={true}
+            />
           </div>
         </span>
 

@@ -530,3 +530,47 @@ border: 1px solid rgba(255, 255, 255, 0.35);
 
   transform: translateY(-1px);
 }
+
+.connectWrapper {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.connectWrapper button {
+  border-radius: var(--alias-border-width-lg) !important;
+}
+.desktopOnly button {
+  border-radius: var(--alias-border-width-lg) !important;
+}
+/* default: desktop */
+.desktopOnly {
+  display: block;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+/* on small screens, swap visibility */
+@media (max-width: 768px) {
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: flex;
+  }
+}
+
+.disabledButton {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(100%);
+}
+
+.disabledButton:hover {
+  opacity: 0.4; /* no hover effect when disabled */
+  transform: none;
+}
