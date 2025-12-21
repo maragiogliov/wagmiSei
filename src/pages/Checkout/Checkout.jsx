@@ -354,34 +354,10 @@ const { items, count, total, addItem } = useCart();
       />
       <img className={styles.brandBadge} src="/assets/Amex.svg" alt="American Express" />
 
-      {/* +5 trigger (keyboard accessible) */}
-      <button
-        type="button"
-        className={styles.moreBrands}
-        aria-haspopup="dialog"
-        aria-expanded={showBrandsTip ? "true" : "false"}
-        onFocus={() => setShowBrandsTip(true)}
-        onBlur={() => setShowBrandsTip(false)}
-      >
-        +5
-      </button>
+   
 
-      {/* Tooltip */}
-      <div
-        className={styles.brandsTooltip}
-        role="tooltip"
-        aria-hidden={showBrandsTip ? "false" : "true"}
-        data-open={showBrandsTip ? "true" : "false"}
-      >
-        <div className={styles.brandsGrid}>
-          <img src="/assets/Discover.svg" alt="Discover" />
-          <img src="/assets/DinersClub.svg" alt="Diners Club" />
-          <img src="/assets/Elo.svg" alt="Elo" />
-          <img src="/assets/JCB.svg" alt="JCB" />
-          <img src="/assets/UnionPay.svg" alt="UnionPay" />
-        </div>
-        <span className={styles.brandsTipArrow} />
-      </div>
+      
+  
     </span>
   </span>
 </label>
