@@ -34,7 +34,7 @@ export default function OrderSummary({
   const [code, setCode] = useState("");
 
   return (
-    <aside className={`${styles.summaryCard} ${classNameOverride}`} aria-labelledby="summary-title">
+    <aside className={`${styles.summaryCard}  ${styles.stickyDesktop} ${classNameOverride}`} aria-labelledby="summary-title">
       {/* Line items preview */}
       {lines.map(({ id, product, qty }) => (
         <div key={id} className={styles.itemRow}>

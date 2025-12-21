@@ -228,3 +228,18 @@ background: radial-gradient(circle at top left,
 }
 
 
+/* Keep summary visible while scrolling (desktop only) */
+.stickyDesktop {
+  position: sticky;
+  top: 24px;          /* distance from top of viewport */
+  align-self: start;  /* important when parent is flex/grid */
+  z-index: 2;
+}
+
+/* Enable only on desktop */
+@media (max-width: 1024px) {
+  .stickyDesktop {
+    position: static;
+    top: auto;
+  }
+}
