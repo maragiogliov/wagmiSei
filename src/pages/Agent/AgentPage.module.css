@@ -21,7 +21,7 @@
 .sidebar {
   grid-column: 1;
   grid-row: 1 / span 2;
-  border-right: 1px solid var(--brand-blue-lighter);
+  border-right: 1px solid var(--brand-grey-checkout-forms);
   background: var(--brand-white);
 
   /* Fixed on desktop */

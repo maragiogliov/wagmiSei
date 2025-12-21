@@ -39,10 +39,6 @@ export default function AgentPage() {
           {/* Child routes render here */}
           <Outlet />
         </main>
-
-        {/* Optional: if you had a global backdrop here, you can remove it 
-            because the sidebar now renders its own mobile backdrop */}
-        {/* <div className={layout.drawerBackdrop} /> */}
       </div>
     </div>
   );

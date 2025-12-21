@@ -11,6 +11,7 @@
 
 
 
+
   /* Soft “glass” fill (fill-opacity="0.2") */
 background: radial-gradient(circle at top left,
   rgba(255, 255, 255, 0.04) 0%,
@@ -225,3 +226,5 @@ background: radial-gradient(circle at top left,
   font-size: var(--body-sm-font-size);
   white-space: nowrap;
 }
+
+
