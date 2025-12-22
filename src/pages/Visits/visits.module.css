@@ -416,3 +416,17 @@ background: radial-gradient(circle at top left,
 }
 
 
+
+/* Desktop sticky left column */
+@media (min-width: 1024px) {
+  .mainGrid {
+    align-items: flex-start; /* important for sticky inside grid/flex */
+  }
+
+  .leftCol {
+    position: sticky;
+    top: 24px;            /* adjust to match your header spacing */
+    align-self: flex-start;
+    overflow: auto;       /* lets the list scroll independently */
+  }
+}

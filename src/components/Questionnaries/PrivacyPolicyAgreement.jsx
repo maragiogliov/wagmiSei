@@ -4,7 +4,7 @@ import styles from "../../pages/Checkout/Checkout.module.css";
 export default function PrivacyPolicyAgreement() {
   return (
     <div className={styles.shippingPage}>
-      <div className={styles.contentGrid}>
+      <div className={styles.contentGridQuestionnaries}>
         <section
           className={styles.formCard}
           role="dialog"
@@ -40,7 +40,7 @@ export default function PrivacyPolicyAgreement() {
               <div className={styles.cardRowLeft}>
                 <div className={styles.cardCol}>
                   <div className={styles.cardTitle}>
-                    Please review the document by clicking the link below:
+                    Please review the document:
                   </div>
                 </div>
               </div>

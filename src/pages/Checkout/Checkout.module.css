@@ -20,6 +20,12 @@
   align-items: start;
 }
 
+.contentGridQuestionnaries {
+  display: grid;
+  gap: 24px;
+  align-items: start;
+}
+
 /* Left card (form) */
 .formCard {
   display: flex;

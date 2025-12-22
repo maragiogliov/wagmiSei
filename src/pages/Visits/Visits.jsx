@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import styles from "./visits.module.css";
 import PrivacyPolicyAgreement from "../../components/Questionnaries/PrivacyPolicyAgreement.jsx";
-
-
+import TelehealthServicesConsent from "../../components/Questionnaries/TelehealthServicesConsent.jsx";
+import ErectileDysfunctionQuestionnaire from "../../components/Questionnaries/ErectileDysfunctionQuestionnaire.jsx";
+import PersonalInformationForm from "../../components/Questionnaries/PersonalInformationForm.jsx";
 const VISITS = [
   {
     id: 1,
@@ -232,38 +233,38 @@ Vendor: Wellness Pharmacy $100.00
   </div>
 
   <div
-    className={`${styles.tabChip} ${activeTab === "medications" ? styles.tabActive : ""}`}
+    className={`${styles.tabChip} ${activeTab === "TelehealthServicesConsent" ? styles.tabActive : ""}`}
     role="button"
     tabIndex={0}
-    onClick={() => setActiveTab("medications")}
-    onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setActiveTab("medications")}
+    onClick={() => setActiveTab("TelehealthServicesConsent")}
+    onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setActiveTab("TelehealthServicesConsent")}
   >
-    <span className={activeTab === "medications" ? styles.tabTextActive : styles.tabText}>
-      MEDICATIONS
+    <span className={activeTab === "TelehealthServicesConsent" ? styles.tabTextActive : styles.tabText}>
+      TELEHEALTH SERVICES CONSENT
     </span>
   </div>
 
   <div
-    className={`${styles.tabChip} ${activeTab === "assessments" ? styles.tabActive : ""}`}
+    className={`${styles.tabChip} ${activeTab === "ErectileDysfunctionQuestionnaire" ? styles.tabActive : ""}`}
     role="button"
     tabIndex={0}
-    onClick={() => setActiveTab("assessments")}
-    onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setActiveTab("assessments")}
+    onClick={() => setActiveTab("ErectileDysfunctionQuestionnaire")}
+    onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setActiveTab("ErectileDysfunctionQuestionnaire")}
   >
-    <span className={activeTab === "assessments" ? styles.tabTextActive : styles.tabText}>
-      ASSESSMENTS
+    <span className={activeTab === "ErectileDysfunctionQuestionnaire" ? styles.tabTextActive : styles.tabText}>
+      ERECTILE DYSFUNCTION QUESTIONNARIED
     </span>
   </div>
 
   <div
-    className={`${styles.tabChip} ${activeTab === "requirements" ? styles.tabActive : ""}`}
+    className={`${styles.tabChip} ${activeTab === "PersonalInformationForm" ? styles.tabActive : ""}`}
     role="button"
     tabIndex={0}
-    onClick={() => setActiveTab("requirements")}
-    onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setActiveTab("requirements")}
+    onClick={() => setActiveTab("PersonalInformationForm")}
+    onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setActiveTab("PersonalInformationForm")}
   >
-    <span className={activeTab === "requirements" ? styles.tabTextActive : styles.tabText}>
-      REQUIREMENTS
+    <span className={activeTab === "PersonalInformationForm" ? styles.tabTextActive : styles.tabText}>
+    PERSONAL INFORMATION FORM 
     </span>
   </div>
 </div>
@@ -271,38 +272,16 @@ Vendor: Wellness Pharmacy $100.00
 
          {activeTab === "privacy" && <PrivacyPolicyAgreement />}
 
-{activeTab === "medications" && (
-  <div className={styles.detailsCard}>
-    <div className={styles.detailLong}>
-      <div className={styles.detailBlock}>
-        <div className={styles.detailLabel}>MEDICATIONS</div>
-        <p className={styles.detailBody}>Coming next…</p>
-      </div>
-    </div>
-  </div>
-)}
+{activeTab === "TelehealthServicesConsent" && <TelehealthServicesConsent />}
 
-{activeTab === "assessments" && (
-  <div className={styles.detailsCard}>
-    <div className={styles.detailLong}>
-      <div className={styles.detailBlock}>
-        <div className={styles.detailLabel}>ASSESSMENTS</div>
-        <p className={styles.detailBody}>Coming next…</p>
-      </div>
-    </div>
-  </div>
-)}
+{activeTab === "ErectileDysfunctionQuestionnaire" && <ErectileDysfunctionQuestionnaire />}
+{activeTab === "PersonalInformationForm" && <PersonalInformationForm />}
 
-{activeTab === "requirements" && (
-  <div className={styles.detailsCard}>
-    <div className={styles.detailLong}>
-      <div className={styles.detailBlock}>
-        <div className={styles.detailLabel}>REQUIREMENTS</div>
-        <p className={styles.detailBody}>Coming next…</p>
-      </div>
-    </div>
-  </div>
-)}
+
+
+
+
+
 
           </div>
         </div>
