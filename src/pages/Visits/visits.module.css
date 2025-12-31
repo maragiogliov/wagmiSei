@@ -38,6 +38,13 @@
   align-items: start;
 }
 
+.mainGridSingle {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+
+
 /* LEFT column (list) */
 .leftCol {
   display: flex;
@@ -319,7 +326,49 @@ background: radial-gradient(circle at top left,
   display: flex;
   justify-content: flex-end;
 }
-.infiniteOutline { width: 24px; height: 24px; }
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 15, 20, 0.6);
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+}
+
+.modalContent {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  max-height: 90vh;
+  overflow: auto;
+
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.modalClose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  border: none;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 999px;
+
+  width: 36px;
+  height: 36px;
+
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
 
 /* Responsiveness */
 @media (max-width: 1024px) {

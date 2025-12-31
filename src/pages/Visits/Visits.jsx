@@ -80,6 +80,9 @@ export default function Visits() {
   const [selectedVisit, setSelectedVisit] = useState(VISITS[0]);
   const [activeTab, setActiveTab] = useState("privacy"); 
 
+  const [open, setOpen] = useState(false);
+
+
   const selectedConfig = STATUS_CONFIG[selectedVisit.status];
 
   return (
@@ -218,7 +221,9 @@ Vendor: Wellness Pharmacy $100.00
                 
               </div>
             </div>
-              <div className={styles.infoTitle}>VISIT DETAILS</div>
+              <div className={styles.btnGhost} onClick={() => setOpen(true)}>
+  VIEW DETAILS
+</div>
 <div className={styles.tabsRow}>
   <div
     className={`${styles.tabChip} ${activeTab === "privacy" ? styles.tabActive : ""}`}

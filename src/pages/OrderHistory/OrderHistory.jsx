@@ -1,6 +1,7 @@
 // OrderHistory.jsx
 import React from "react";
 import styles from "./OrderHistory.module.css";
+import OrderDetailsPopUp from "../../components/OrderDetailsPopUp.jsx";
 
 const PAGE_SIZE = 20;
 
@@ -140,54 +141,47 @@ const extraOrders = Array.from({ length: 40 }, (_, i) => {
 
 const ORDERS = [...baseOrders, ...extraOrders]; // total = 50
 
+
+
 export default function OrderHistory() {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [sortConfig, setSortConfig] = React.useState({
     key: "date",
-    direction: "desc", // default: latest first
+    direction: "desc",
   });
+
+  // ✅ popup state
+  const [isDetailsOpen, setIsDetailsOpen] = React.useState(false);
+  const [selectedOrder, setSelectedOrder] = React.useState(null);
+
+  const openDetails = (order) => {
+    setSelectedOrder(order);
+    setIsDetailsOpen(true);
+  };
+
+  const closeDetails = () => {
+    setIsDetailsOpen(false);
+    // optional: clear after close
+    // setSelectedOrder(null);
+  };
 
   const handlePrev = () => {
     setCurrentPage((prev) => Math.max(1, prev - 1));
   };
 
-  const handleNext = () => {
-    setCurrentPage((prev) =>
-      Math.min(totalPages, prev + 1)
-    );
-  };
-
-  const handleSort = (key) => {
-    setCurrentPage(1); // reset to first page on sort change
-    setSortConfig((prev) => {
-      if (prev.key === key) {
-        // toggle direction
-        return {
-          key,
-          direction: prev.direction === "asc" ? "desc" : "asc",
-        };
-      }
-      // new column → default asc
-      return { key, direction: "asc" };
-    });
-  };
-
   const sortedOrders = React.useMemo(() => {
     const ordersCopy = [...ORDERS];
-
     if (!sortConfig) return ordersCopy;
 
     ordersCopy.sort((a, b) => {
       let aVal = a[sortConfig.key];
       let bVal = b[sortConfig.key];
 
-      // numeric sort for #
       if (sortConfig.key === "number") {
         const diff = aVal - bVal;
         return sortConfig.direction === "asc" ? diff : -diff;
       }
 
-      // date sort
       if (sortConfig.key === "date") {
         const aDate = new Date(aVal);
         const bDate = new Date(bVal);
@@ -195,7 +189,6 @@ export default function OrderHistory() {
         return sortConfig.direction === "asc" ? diff : -diff;
       }
 
-      // string sort (type, description, orderStatus, paymentStatus)
       aVal = String(aVal).toLowerCase();
       bVal = String(bVal).toLowerCase();
 
@@ -208,11 +201,23 @@ export default function OrderHistory() {
   }, [sortConfig]);
 
   const totalPages = Math.ceil(sortedOrders.length / PAGE_SIZE);
+
+  const handleNext = () => {
+    setCurrentPage((prev) => Math.min(totalPages, prev + 1));
+  };
+
+  const handleSort = (key) => {
+    setCurrentPage(1);
+    setSortConfig((prev) => {
+      if (prev.key === key) {
+        return { key, direction: prev.direction === "asc" ? "desc" : "asc" };
+      }
+      return { key, direction: "asc" };
+    });
+  };
+
   const startIndex = (currentPage - 1) * PAGE_SIZE;
-  const currentOrders = sortedOrders.slice(
-    startIndex,
-    startIndex + PAGE_SIZE
-  );
+  const currentOrders = sortedOrders.slice(startIndex, startIndex + PAGE_SIZE);
 
   const renderSortIcon = (columnKey) => {
     if (sortConfig.key !== columnKey) return null;
@@ -233,94 +238,92 @@ export default function OrderHistory() {
               className={styles.sortableHead}
               onClick={() => handleSort("number")}
             >
-              #
-              {renderSortIcon("number")}
+              #{renderSortIcon("number")}
             </div>
+
             <div
               className={styles.sortableHead}
               onClick={() => handleSort("type")}
             >
-              TYPE
-              {renderSortIcon("type")}
+              TYPE{renderSortIcon("type")}
             </div>
+
             <div
               className={`${styles.hideSm} ${styles.sortableHead}`}
               onClick={() => handleSort("description")}
             >
-              Description
-              {renderSortIcon("description")}
+              Description{renderSortIcon("description")}
             </div>
+
             <div
               className={styles.sortableHead}
               onClick={() => handleSort("orderStatus")}
             >
-              Order Status
-              {renderSortIcon("orderStatus")}
+              Order Status{renderSortIcon("orderStatus")}
             </div>
+
             <div
               className={`${styles.hideMd} ${styles.sortableHead}`}
               onClick={() => handleSort("paymentStatus")}
             >
-              Payment Status
-              {renderSortIcon("paymentStatus")}
+              Payment Status{renderSortIcon("paymentStatus")}
             </div>
+
             <div
               className={styles.sortableHead}
               onClick={() => handleSort("date")}
             >
-              Date
-              {renderSortIcon("date")}
+              Date{renderSortIcon("date")}
             </div>
+
             <div>Actions</div>
           </div>
 
-          {/* rows (paginated + sorted) */}
+          {/* rows */}
           {currentOrders.map((order) => (
-            <div
-              key={order.number}
-              className={`${styles.ohGrid} ${styles.ohRow}`}
-            >
+            <div key={order.number} className={`${styles.ohGrid} ${styles.ohRow}`}>
               <div className={styles.numberInfo}>{order.number}</div>
+
               <div className={styles.ohType}>
-                <img
-                  src={order.icon}
-                  alt=""
-                  className={styles.ohIco}
-                />
+                <img src={order.icon} alt="" className={styles.ohIco} />
                 {order.type}
               </div>
+
               <div className={styles.hideSm}>{order.description}</div>
+
               <div>
-                <span
-                  className={`${styles.pill} ${
-                    styles[order.orderStatusClass]
-                  }`}
-                >
+                <span className={`${styles.pill} ${styles[order.orderStatusClass]}`}>
                   <span
-                    className={`${styles.statusDot} ${
-                      styles[order.orderStatusClass]
-                    }`}
-                  ></span>
+                    className={`${styles.statusDot} ${styles[order.orderStatusClass]}`}
+                  />
                   {order.orderStatus}
                 </span>
               </div>
+
               <div className={styles.hideMd}>
-                <span
-                  className={`${styles.pill} ${
-                    styles[order.paymentStatusClass]
-                  }`}
-                >
+                <span className={`${styles.pill} ${styles[order.paymentStatusClass]}`}>
                   <span
-                    className={`${styles.statusDot} ${
-                      styles[order.paymentStatusClass]
-                    }`}
-                  ></span>
+                    className={`${styles.statusDot} ${styles[order.paymentStatusClass]}`}
+                  />
                   {order.paymentStatus}
                 </span>
               </div>
+
               <div className={styles.dateInfo}>{order.date}</div>
+
               <div>
-                <div className={styles.btnGhost}>VIEW DETAILS</div>
+                {/* ✅ click opens popup */}
+                <div
+                  className={styles.btnGhost}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openDetails(order)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") openDetails(order);
+                  }}
+                >
+                  VIEW DETAILS
+                </div>
               </div>
             </div>
           ))}
@@ -335,9 +338,11 @@ export default function OrderHistory() {
           >
             <img src="/assets/chevron-back-outline.svg" alt="Prev" />
           </button>
+
           <span>
             Page {currentPage} of {totalPages}
           </span>
+
           <button
             className={styles.iconBtn}
             onClick={handleNext}
@@ -347,6 +352,15 @@ export default function OrderHistory() {
           </button>
         </div>
       </div>
+
+      {/* ✅ popup render */}
+      {isDetailsOpen && (
+        <OrderDetailsPopUp
+          isOpen={isDetailsOpen}
+          onClose={closeDetails}
+          order={selectedOrder}
+        />
+      )}
     </div>
   );
 }

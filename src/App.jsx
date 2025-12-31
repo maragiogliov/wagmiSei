@@ -26,6 +26,9 @@ function App() {
             {/* Protected routes → only visible when wallet is connected */}
 
 
+
+            <Route element={<WalletGuard />}>
+
               {/* Agent layout wraps main app pages */}
               <Route element={<AgentPage />}>
                 <Route path="/agent" element={<AgentChat />} />
@@ -37,9 +40,6 @@ function App() {
                 <Route path="/visits" element={<Visits />} />
               </Route>
               <Route path="/dashboard" element={<Dashboard />} />
-
-            <Route element={<WalletGuard />}>
-
 
             </Route>
           
